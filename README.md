@@ -22,5 +22,6 @@ Group project for our NBA team for SI 649; with simplified, easy to use/join cod
 - gh-page --> needs npm --> needs webpack
   - seems it's hard to just setup webpack manually. it's best to just use create-react-app, and use as little as you can about JSX, props and states. (Just use them as plain html/css/javascript) But indeed there're issues and react may need further cautions...
   - so indeed the current approach is the best for now!
+  - *just use local dev instead...!*
 - [Using Observables and Subject](https://stackoverflow.com/questions/36814995/rxjs-multiple-subscriptions-to-observable)
 - [Load html module in jQeury](http://api.jquery.com/load/)
