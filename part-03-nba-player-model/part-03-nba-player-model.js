@@ -13,8 +13,8 @@ function part03EntryPoint() {
      */
 
     let svg = d3.select(".part-03-my-svg").attrs({
-        width: 200,
-        height: 750,
+        width: 400,
+        height: 450,
     }).append("g")
 
     let rect = svg.append("rect").attrs({
@@ -30,7 +30,7 @@ function part03EntryPoint() {
      * Then, load data like this (feel free to delete the code here, just for demostrating purpose):
      */
     d3.csv("part-03-nba-player-model/data/draft78.csv").then((data) => {
-        console.log('part 03 csv data is', data)
+        // console.log('part 03 csv data is', data)
     })
 }
 
