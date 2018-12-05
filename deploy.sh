@@ -14,6 +14,7 @@ rsync -av \
 --exclude='node_modules' \
 --exclude='.gitignore' \
 --exclude='.git' \
+--exclude='.publish' \
 --exclude='gulpfile.js' \
 --exclude='*.json' \
 --exclude='*.sh' \
@@ -24,4 +25,5 @@ if [[ ! -d "node_modules" ]]; then
     return
 fi
 
-node_modules/.bin/gulp deploy
+node_modules/.bin/gulp deploy && \
+echo "INFO: Deployed successfully! Visit the website now at si649-NBA.github.io/nba-group-final-crazy-fast."
