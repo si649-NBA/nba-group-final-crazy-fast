@@ -20,10 +20,27 @@ overwrite others' styling, and your styling won't be overwritten by others.
     /* background-color: #2196F3; */
     padding: 10px;
   }
-  .grid-item {
+.grid-item {
     /* background-color: rgba(255, 255, 255, 0.8); */
     /* border: 1px solid rgba(0, 0, 0, 0.8); */
     padding: 20px;
     font-size: 30px;
     text-align: center;
-  }
+}
+
+.part3-header {
+    text-align: center;
+}
+
+.part3-select {
+    text-align: center;
+}
+
+button {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 20px;
+    /* background-color: aquamarine; */
+    border-radius: 6px;
+    margin-top: 12px;
+}

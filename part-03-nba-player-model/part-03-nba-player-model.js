@@ -63,10 +63,12 @@ function drawradar() {
     var options = {
         responsive: false,
         maintainAspectRatio: true,
+        legend: false,
         scale: {
             ticks: {
                 beginAtZero: true,
-                max: 5
+                max: 5,
+                stepSize: 5
             }
         }
     };
@@ -102,10 +104,12 @@ function drawradar2() {
     var options = {
         responsive: false,
         maintainAspectRatio: true,
+        legend: false,
         scale: {
             ticks: {
                 beginAtZero: true,
-                max: 5
+                max: 5,
+                stepSize: 5,
             }
         }
     };

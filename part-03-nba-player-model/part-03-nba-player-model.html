@@ -3,13 +3,14 @@
 <div class="part-03-nba-player-model">
 
     <!-- Happy coding! Feel free to replace any code in this <div> -->
-    <h1>
-        Find the MVP for your height and weight!
-    </h1>
+    <div class="part3-header" ><h2 style="text-align: center; margin: 3% auto">
+        [Part3] Find the MVP for your height and weight!
+    </h2></div>
     <!-- <img src="img/surprised_cat.gif">
     <svg class="part-03-my-svg"></svg> -->
 
     <!-- select your ideal height weight-->
+    <div class="part3-select">
     <h3>Select Position</h3>
     <label>
     <input type="radio" name="position" value="1"> C
@@ -48,11 +49,12 @@
     </label>
     <br>
     <button type="submit" onclick="changeimg()">Find my idol!</button><br>
+    </div>
 
     <!-- avatar -->
     <div class="grid-container">
         <div class="grid-item" id="placehere">
-            <img id="img" src="img/who.png"  alt="null" height="254" width="350"/>
+            <img id="img" src="img/who.png"  alt="null" height="400" width="400"/>
         </div>
         <div class="grid-item" class = "radarChart">
             <canvas id="radar" width="400" height="400"></canvas>
