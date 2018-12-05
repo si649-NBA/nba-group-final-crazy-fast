@@ -26,4 +26,4 @@ if [[ ! -d "node_modules" ]]; then
 fi
 
 node_modules/.bin/gulp deploy && \
-echo "INFO: Deployed successfully! Visit the website now at si649-NBA.github.io/nba-group-final-crazy-fast."
+echo "INFO: Deployed successfully! Visit the website now at https://si649-NBA.github.io/nba-group-final-crazy-fast."
