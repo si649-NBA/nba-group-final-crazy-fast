@@ -1,0 +1,68 @@
+<!-- If you need to include external JS/CSS library, please let your teammates know and avoid include them here -->
+
+<div class="part-03-nba-player-model">
+
+    <!-- Happy coding! Feel free to replace any code in this <div> -->
+    <div class="part3-header" ><h2 style="text-align: center; margin: 3% auto">
+        [Part3] Find the MVP for your height and weight!
+    </h2></div>
+    <!-- <img src="img/surprised_cat.gif">
+    <svg class="part-03-my-svg"></svg> -->
+
+    <!-- select your ideal height weight-->
+    <div class="part3-select">
+    <h3>Select Position</h3>
+    <label>
+    <input type="radio" name="position" value="1"> C
+    </label>
+    <label>
+    <input type="radio" name="position" value="2" checked> PF
+    </label>
+    <label>
+    <input type="radio" name="position" value="3" disabled> SF
+    </label>
+    <label>
+        <input type="radio" name="position" value="4" disabled> SG
+    </label>
+    <label>
+        <input type="radio" name="position" value="5"> PG
+    </label>
+    <h3>Select Height</h3>
+    <label>
+        <input type="radio" name="height" value="1" checked="checked"> less than 190cm
+    </label>
+    <label>
+        <input type="radio" name="height" value="2"> 190cm to 210cm
+    </label>
+    <label>
+        <input type="radio" name="height" value="3"> more than 210cm
+    </label>
+    <h3>Select Weight</h3>
+    <label>
+        <input type="radio" name="weight" value="1" checked="checked"> less than 90kg
+    </label>
+    <label>
+        <input type="radio" name="weight" value="2"> 90kg to 110kg
+    </label>
+    <label>
+        <input type="radio" name="weight" value="3"> more than 110kg
+    </label>
+    <br>
+    <button type="submit" onclick="changeimg()">Find my idol!</button><br>
+    </div>
+
+    <!-- avatar -->
+    <div class="grid-container">
+        <div class="grid-item" id="placehere">
+            <img id="img" src="img/who.png"  alt="null" height="400" width="400"/>
+        </div>
+        <div class="grid-item" class = "radarChart">
+            <canvas id="radar" width="400" height="400"></canvas>
+        </div>
+        <div class="grid-item" class = "radarChart">
+            <canvas id="radar2" width="400" height="400"></canvas>
+        </div>
+    </div>
+
+
+</div>

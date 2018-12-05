@@ -1,0 +1,10 @@
+/**
+
+It's best practice to prefix `part-0x` to your CSS class, so you don't
+overwrite others' styling, and your styling won't be overwritten by others.
+
+**/
+
+.part-01-rect {
+    fill: rgb(39, 51, 219);
+}

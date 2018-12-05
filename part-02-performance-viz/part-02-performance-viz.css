@@ -1,0 +1,20 @@
+/**
+
+It's best practice to prefix `part-0x` to your CSS class, so you don't
+overwrite others' styling, and your styling won't be overwritten by others.
+
+**/
+
+.part-02-rect {
+    fill: rgb(253, 240, 243);
+}
+
+.part-02-performance-viz {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.part-02-header {
+    max-width: 50vw;
+}
