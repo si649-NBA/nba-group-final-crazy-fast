@@ -12,16 +12,16 @@ function part02EntryPoint() {
      * Below are example code, feel free to delete them.
      */
 
-    let svg = d3.select(".part-02-my-svg").attrs({
+    svgSize = {
         width: 600,
-        height: 450,
-    }).append("g")
+        height: 450
+    }
 
-    let rect = svg.append("rect").attrs({
-        width: 30,
-        height: 70,
+    let svg = d3.select(".part-02-my-svg").attrs(svgSize).append("g")
+
+    let rect = svg.append("rect").attrs(Object.assign({}, svgSize, {
         class: `part-02-rect`
-    })
+    }))
 
     d3.csv("part-02-performance-viz/data/Seasons_Stats.csv").then((data) => {
         // console.log('d3 csv', data)
@@ -39,7 +39,7 @@ function part02EntryPoint() {
 ////////////////////////////////////////////////////
 
 $(document).ready(() => {
-    window.loadHtmlModuleSubject.subscribe(() => {
+    window.loadHtmlModuleSubject.subscribe((d) => {
         part02EntryPoint()
     })
 })
