@@ -54,6 +54,7 @@ function changeimg(){
         var elem =  document.getElementById("img");
         elem.setAttribute("src", img);
         drawradar();
+        drawradar2();
         console.log(img);
     };
 }
