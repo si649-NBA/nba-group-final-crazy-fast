@@ -5,10 +5,6 @@ overwrite others' styling, and your styling won't be overwritten by others.
 
 **/
 
-.part-02-rect {
-    fill: rgb(253, 240, 243);
-}
-
 .part-02-performance-viz {
     display: flex;
     flex-direction: column;
@@ -17,4 +13,22 @@ overwrite others' styling, and your styling won't be overwritten by others.
 
 .part-02-header {
     max-width: 50vw;
+}
+
+.part-02-height-line {
+    stroke: black;
+    stroke-width: 2.5px;
+    fill: none;
+}
+
+.part-02-weighed-height-odrb-line {
+    stroke: red;
+    stroke-width: 2.5px;
+    fill: none;
+}
+
+.part-02-weighed-height-pts-line {
+    stroke: orange;
+    stroke-width: 2.5px;
+    fill: none;
 }
