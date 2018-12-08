@@ -1,5 +1,6 @@
 # nba-group-final-crazy-fast
-Group project for our NBA team for SI 649; with simplified, easy to use/join code base.
+
+Group project for our NBA team for SI 649; with simplified, easy to use/join code base. You can check out the webpage [here](https://si649-nba.github.io/nba-group-final-crazy-fast/).
 
 ## Quickstart
 
