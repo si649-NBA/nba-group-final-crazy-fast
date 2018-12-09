@@ -16,7 +16,7 @@ overwrite others' styling, and your styling won't be overwritten by others.
 }
 
 .part-02-height-line {
-    stroke: black;
+    stroke: gray;
     stroke-width: 2.5px;
     fill: none;
 }
