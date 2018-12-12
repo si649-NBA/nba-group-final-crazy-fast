@@ -3,7 +3,6 @@
 <div class="part-03-nba-player-model">
     <header class="part3-header">
         <h2>Find the MVP for your height and weight!</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean faucibus lorem nec aliquet placerat. In eget cursus risus. Aenean dictum dolor quis est fringilla, eget consequat ante scelerisque.</p>
     </header>
 
     <!-- Happy coding! Feel free to replace any code in this <div> -->
@@ -11,58 +10,126 @@
     <svg class="part-03-my-svg"></svg> -->
 
     <!-- select your ideal height weight-->
-    <div class="part3-select">
-    <h3>Select Position</h3>
-    <label>
-    <input type="radio" name="position" value="1"> C
-    </label>
-    <label>
-    <input type="radio" name="position" value="2" checked> PF
-    </label>
-    <label>
-    <input type="radio" name="position" value="3" disabled> SF
-    </label>
-    <label>
-        <input type="radio" name="position" value="4" disabled> SG
-    </label>
-    <label>
-        <input type="radio" name="position" value="5"> PG
-    </label>
-    <h3>Select Height</h3>
-    <label>
-        <input type="radio" name="height" value="1" checked="checked"> less than 190cm
-    </label>
-    <label>
-        <input type="radio" name="height" value="2"> 190cm to 210cm
-    </label>
-    <label>
-        <input type="radio" name="height" value="3"> more than 210cm
-    </label>
-    <h3>Select Weight</h3>
-    <label>
-        <input type="radio" name="weight" value="1" checked="checked"> less than 90kg
-    </label>
-    <label>
-        <input type="radio" name="weight" value="2"> 90kg to 110kg
-    </label>
-    <label>
-        <input type="radio" name="weight" value="3"> more than 110kg
-    </label>
-    <br>
-    <button type="submit" onclick="changeimg()">Find my idol!</button><br>
-    </div>
+	<div class="part3-inputs">
+		<div class="part3-intro">
+			<p>Choose position, height, weight. Then we will find an ideal player for you. You can find out what might be the best style for this height and weight from the radar chart.</p>
+		</div>
+		<div class="part3-select">
+		<div class="part3-filters">
+				<!-- <div class="ori-filter1">
+					<label>
+						<input type="radio" name="position" value="1"> C
+					</label>
+					<label>
+						<input type="radio" name="position" value="2" checked> PF
+					</label>
+					<label>
+						<input type="radio" name="position" value="3" disabled> SF
+					</label>
+					<label>
+						<input type="radio" name="position" value="4" disabled> SG
+					</label>
+					<label>
+						<input type="radio" name="position" value="5"> PG
+					</label>
+				</div> -->
+			<div class="filter1">
+				<h4>Select Position</h4>
+				<ul class="positionfilter">
+				    <li>
+
+				            <input type="radio" id="C-pos" name="position" value="1" checked><label for="C-pos">&#160;C&#160;</label>
+				    </li>
+				    <li>
+
+				            <input type="radio" id="PF-pos" name="position" value="2"><label for="PF-pos">PF</label>
+				    </li>
+				    <li>
+
+				            <input type="radio" id="SF-pos" name="position" value="3"><label for="SF-pos">SF</label>
+				    </li>
+				</ul>
+			</div>
+
+			<div class="filter2">
+				<h4>Select Height</h4>
+				<ul class="heightfilter">
+					<li>
+
+							<input type="radio" id="less190" name="height" value="1" checked><label for="less190">&#60;190cm</label>
+					</li>
+					<li>
+
+							<input type="radio" id="from190to210" name="height" value="2"><label for="from190to210">190~210cm</label>
+					</li>
+					<li>
+
+							<input type="radio" id="more210" name="height" value="3"><label for="more210">&#62;210cm</label>
+					</li>
+				</ul>
+			</div>
+			<!-- <div class="ori-filter2">
+				<h3>Select Height</h3>
+				<label>
+					<input type="radio" name="height" value="1" checked="checked"> less than 190cm
+				</label>
+				<label>
+					<input type="radio" name="height" value="2"> 190cm to 210cm
+				</label>
+				<label>
+					<input type="radio" name="height" value="3"> more than 210cm
+				</label>
+			</div -->
+			<div class="filter3">
+				<h4>Select Height</h4>
+				<ul class="weightfilter">
+					<li>
+
+							<input type="radio" id="less90" name="weight" value="1" checked><label for="less90">&#60;90kg</label>
+					</li>
+					<li>
+
+							<input type="radio" id="from90to110" name="weight" value="2"><label for="from90to110">90~110kg</label>
+					</li>
+					<li>
+
+							<input type="radio" id="more110" name="weight" value="3">	<label for="more110">&#62;110kg</label>
+					</li>
+				</ul>
+			</div>
+			<!-- <div class="ori-filter3">
+				<h3>Select Weight</h3>
+				<label>
+					<input type="radio" name="weight" value="1" checked="checked"> less than 90kg
+				</label>
+				<label>
+					<input type="radio" name="weight" value="2"> 90kg to 110kg
+				</label>
+				<label>
+					<input type="radio" name="weight" value="3"> more than 110kg
+				</label>
+			</div> -->
+			<br>
+			<button type="submit" onclick="changeimg()" id="filterbtn">Find my idol!</button><br>
+		</div>
+	</div>
+	</div>
+
+
 
     <!-- avatar -->
-    <div class="grid-container">
-        <div class="grid-item" id="placehere">
-            <img id="img" src="img/who.png"  alt="null" height="400" width="400"/>
-        </div>
-        <div class="grid-item" class = "radarChart">
-            <canvas id="radar" width="400" height="400"></canvas>
-        </div>
-        <div class="grid-item" class = "radarChart">
-            <canvas id="radar2" width="400" height="400"></canvas>
-        </div>
+    <div>
+		<div class="part3-outputs">
+			<div class="grid-item" id="placehere">
+		            <img id="img" src="img/who.png"  alt="null" height="300" width="300"/>
+		    </div>
+	        <div class="grid-item" class = "radarChart">
+	            <canvas id="radar" width="300" height="350"></canvas>
+	        </div>
+	        <div class="grid-item" class = "radarChart">
+	            <canvas id="radar2" width="350" height="350"></canvas>
+	        </div>
+		</div>
     </div>
 
 

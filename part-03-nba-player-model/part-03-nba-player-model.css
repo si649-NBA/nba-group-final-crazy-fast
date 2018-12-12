@@ -4,26 +4,32 @@ It's best practice to prefix `part-0x` to your CSS class, so you don't
 overwrite others' styling, and your styling won't be overwritten by others.
 
 **/
+h4{
+	margin-top:1.2rem;
+	margin-bottom:0;
+}
+
+.filter1 h4{
+	margintop:1rem;
+}
 
 .part-03-rect {
     fill: red;
 }
 
 .radarChart {
-    height: 600px;
-    width: 600px;
+    height: 500px;
+    width: 500px;
 }
 
-.grid-container {
+/* .grid-container {
     display: grid;
     grid-template-columns: auto auto auto;
-    /* background-color: #2196F3; */
     padding: 10px;
-  }
+  } */
+
 .grid-item {
-    /* background-color: rgba(255, 255, 255, 0.8); */
-    /* border: 1px solid rgba(0, 0, 0, 0.8); */
-    padding: 20px;
+    margin: 2%;
     font-size: 30px;
     text-align: center;
 }
@@ -32,15 +38,139 @@ overwrite others' styling, and your styling won't be overwritten by others.
     text-align: center;
 }
 
-.part3-select {
-    text-align: center;
+
+.part3-inputs{
+	display:flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
-button {
+.part3-intro{
+	width:45%;
+	/* margin-left:5%; */
+}
+
+.part3-select{
+	width:45%;
+	padding-left:5%;
+	/* margin-left:5%; */
+}
+
+.part3-outputs{
+	display:flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin-top:1rem;
+}
+
+.part3-filters{
+	display:flex;
+	flex-direction:column;
+	flex-wrap:nowrap;
+	margin-left:5%;
+	/* border:1px solid #262626; */
+	border-radius: 15px;
+}
+
+.part3-filters h4{
+	padding-left:15px;
+
+}
+
+.part-03-nba-player-model{
+	margin:2rem 15%;
+}
+
+.positionfilter,.heightfilter, .weightfilter {
+    list-style-type:none;
+    margin:0;
+    padding-left:15px;
+	display:flex;
+	flex-direction:row;
+	justify-content: space-between;
+}
+
+
+
+.positionfilter li, .heightfilter li, .weightfilter li{
+    float:left;
+    margin:6px;
+	margin-left:0;
+	margin-top:0;
+}
+
+
+.positionfilter label, .heightfilter label, .weightfilter label {
+	font-size: 1.2rem;
+	padding: 5px;
+	padding-left:0px;
+	margin: 10px;
+	margin-left:0;
+	border-radius: 4px;
+	border: 1px solid #AEADB0;
+	color: #AEADB0;
+	background-color: transparent;
+	line-height: 1;
+	box-sizing: border-box;
+	cursor: pointer;
+	white-space: nowrap;
+	/* background-image: url(https://raw.githubusercontent.com/flowuhh/image-host/master/splatoonWave.png); */
+	background-repeat: repeat-x;
+	background-position: 0 -100%;
+	transition: 0.35s ease;
+	&:hover {
+		border: 1px solid #F9D04D;
+		color: #F9D04D;
+	};
+}
+
+.positionfilter label:hover, .heightfilter label:hover, .weightfilter label:hover {
+	border: 1px solid #F9D04D;
+    background:#F9D04D;
+	color:#0e1822;
+}
+
+.positionfilter input, .heightfilter input, .weightfilter input {
+	display:none;
+}
+
+.positionfilter input[type=radio]:checked + label, .weightfilter input[type=radio]:checked + label, .heightfilter input[type=radio]:checked + label {
+  border: 1px solid #F9D04D;
+  background:#F9D04D;
+  color:#0e1822;
+}
+
+
+
+#filterbtn {
+	margin-left:60%;
+	width:50%;
     font-size: 14px;
     font-weight: bold;
-    padding: 20px;
+    padding: 15px;
     /* background-color: aquamarine; */
-    border-radius: 6px;
+    border-radius: 30px;
     margin-top: 12px;
+	border:1px solid white;
+	background-repeat: repeat-x;
+	background-position: 0 -100%;
+	transition: 0.35s ease;
+}
+
+#filterbtn:hover{
+	background-color:#F9D04D;
+	cursor:pointer
+	border:1px solid #F9D04D;
+}
+
+#filterbtn::after{
+	outline:none;
+}
+
+label {
+    display: block;
+    text-align: center;
+    width: 120px;
 }
