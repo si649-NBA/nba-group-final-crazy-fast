@@ -68,7 +68,7 @@ async function part01EntryPoint() {
 
   //set scale
   function setScale() {
-    var padding = 50;
+    var padding = 30;
     part1_xScale = d3.scaleLinear()
       .domain([60, 150])
       .range([padding, 700 - padding * 2]);
@@ -108,7 +108,7 @@ async function part01EntryPoint() {
 
   //set axis
   function setAxis() {
-    var padding = 50;
+    var padding = 30;
     var xAxis = d3.axisBottom()
       .scale(part1_xScale)
       .ticks(10) //set number of ticks
