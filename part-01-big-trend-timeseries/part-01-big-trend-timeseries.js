@@ -13,7 +13,7 @@ async function part01EntryPoint() {
    */
 
   let svg = d3.select(".part-01-my-svg").attrs({
-    width: 700,
+    width: 600,
     height: 450,
   }).append("g")
 
@@ -71,7 +71,7 @@ async function part01EntryPoint() {
     var padding = 30;
     part1_xScale = d3.scaleLinear()
       .domain([60, 150])
-      .range([padding, 700 - padding * 2]);
+      .range([padding, 600 - padding * 2]);
     part1_yScale = d3.scaleLinear()
       .domain([1.6, 2.3])
       .range([450 - padding, padding]);
