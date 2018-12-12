@@ -148,33 +148,6 @@ class WeighedHeightViz {
                 lineColor: col.lineColor
             })
         }
-        // this.drawHeightLine({
-        //     columnName: 'height_avg', 
-        //     className: 'part-02-height-line',
-        //     lineColor: d3.color('gray')
-        // })
-        // this.drawHeightLine({
-        //     columnName: 'wed_h_by_PTS_avg', 
-        //     className: 'part-02-weighed-height-pts-line',
-        //     lineColor: d3.color('orange')
-        // })
-        // this.drawHeightLine({
-        //     columnName: 'wed_h_by_orb_drb_sum_avg', 
-        //     className: 'part-02-weighed-height-odrb-line',
-        //     lineColor: d3.color('red')
-        // })
-        // this.drawHeightLine({
-        //     columnName: 'wed_h_by_AST_avg', 
-        //     className: 'part-02--wed-h-ast-line',
-        //     lineColor: d3.color('red').darker()
-        // })
-        // this.drawHeightLine({
-        //     columnName: 'wed_h_by_BLK_avg', 
-        //     className: 'part-02--wed-h-blk-line',
-        //     lineColor: d3.color('red').darker().darker()
-        // })
-        
-        
     }
 
     drawHeightLine(spec) {
