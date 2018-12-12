@@ -1,8 +1,8 @@
 /**
- * Avoid putting code outside of functions (global space), so you won't 
- * overwrite other's code / be overwritten accidentally. Try to only put 
+ * Avoid putting code outside of functions (global space), so you won't
+ * overwrite other's code / be overwritten accidentally. Try to only put
  * your code in functions, class, or in the $(document).ready(...) function.
- * 
+ *
  */
 
 function part03EntryPoint() {
@@ -73,7 +73,7 @@ function drawradar() {
             }
         }
     };
-    
+
     var dataLiteracy = {
         labels: ["Offense", "Defence", "Rebounding", "Potential"],
         datasets: [{
@@ -88,14 +88,14 @@ function drawradar() {
             borderWidth: 1
         }]
     };
-    
+
     var ctx = document.getElementById("radar");
     var myRadarChart = new Chart(ctx, {
         type: 'radar',
         data: dataLiteracy,
         options: options
     });
-    
+
     console.log(myRadarChart);
 
 }
@@ -128,14 +128,14 @@ function drawradar2() {
             borderWidth: 1
         }]
     };
-    
+
     var ctx = document.getElementById("radar2");
     var myRadarChart = new Chart(ctx, {
         type: 'radar',
         data: dataLiteracy,
         options: options
     });
-    
+
     console.log(myRadarChart);
 
 }
