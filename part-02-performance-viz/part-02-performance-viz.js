@@ -6,14 +6,6 @@
  */
 
 
-class NumericColumn {
-    constructor(name="", lineColor="") {
-        this.name = name 
-        this.className = `part-2--${this.name}--line`
-        this.lineColor = lineColor
-    }
-}
-
 function part02EntryPoint() {
     /**
      * TODO: Start coding here!
@@ -42,13 +34,88 @@ function part02EntryPoint() {
         svgSpec
     });
 
+    let dataCheckboxFilter = new DataCheckboxFilter({
+        selector: '.part-2--weighed-filter',
+        fields: weighedHeightViz.numericColumns.map((c) => c.name)
+    })
+    
+}
 
+class NumericColumn {
+    constructor(name="", lineColor="") {
+        this.name = name 
+        this.className = `part-2--${this.name}--line`
+        this.lineColor = lineColor
+    }
+}
+
+class WeighedDataCheckbox {
+    constructor(props) {
+        let { identifierText="", labelText="" } = props;
+        this.identifierText = identifierText;
+        this.labelText = labelText;
+
+        this.checkbox = this.generatejQueryObject()
+    }
+
+    generatejQueryObject() {
+        let checkboxField = $("<div>", {
+            class: `part-2--checkbox-field`
+        })
+        let checkbox = $("<input>", {
+            type: `checkbox`,
+            id: `part-2--${this.identifierText}-checkbox`
+        })
+        let label = $("<label>", {
+            for: checkbox.attr('id')
+        }).text(this.labelText)
+        
+        checkboxField
+            .append(checkbox)
+            .append(label)
+        
+        return checkboxField
+    }
+}
+
+class DataCheckboxFilter {
+    constructor(props) {
+        let { selector, fields } = props;
+        this.selector = selector;
+        this.jQueryObject = $(selector);
+        this.fields = fields;
+        this.checkboxFields = [];
+
+        this.generateCheckboxes()
+        for (let ch of this.checkboxFields) {
+            this.jQueryObject.append(ch.checkbox)
+        }
+    }
+
+    generateCheckboxes() {
+        for (let f of this.fields) {
+            let checkboxField = new WeighedDataCheckbox({
+                identifierText: f,
+                labelText: f
+            })
+            this.checkboxFields.push(checkboxField)
+        }
+    }
 }
 
 /** TODO: Add your functions here! */
 class WeighedHeightViz {
     constructor(props) {
         this.props = props;
+
+        this.numericColumns = [
+            new NumericColumn('height_avg', 'gray'),
+            new NumericColumn('wed_h_by_orb_drb_sum_avg', 'purple'),
+            new NumericColumn('wed_h_by_PTS_avg', 'red'),
+            new NumericColumn('wed_h_by_AST_avg', 'orange'),
+            new NumericColumn('wed_h_by_BLK_avg', 'blue'),
+        ]
+
         this.loadData().then(() => {
             this.initVizSpace();
             this.initScale()
@@ -68,13 +135,6 @@ class WeighedHeightViz {
 
     async loadData() {
         this.data = await d3.csv("part-02-performance-viz/data/processed_all_positions_years_height_df.csv");
-        this.numericColumns = [
-            new NumericColumn('height_avg', 'gray'),
-            new NumericColumn('wed_h_by_orb_drb_sum_avg', 'purple'),
-            new NumericColumn('wed_h_by_PTS_avg', 'red'),
-            new NumericColumn('wed_h_by_AST_avg', 'orange'),
-            new NumericColumn('wed_h_by_BLK_avg', 'blue'),
-        ]
         this.data = this.data.map((d) => {
             let mappedD = { year: d.id };
             for (let col of this.numericColumns.map((n) => n.name)) {
