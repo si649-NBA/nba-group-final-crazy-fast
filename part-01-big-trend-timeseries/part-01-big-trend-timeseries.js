@@ -150,16 +150,16 @@ async function part01EntryPoint() {
   function setTime() {
     var running = false;
     var timer;
-    $("button").on("click", function() {
+    $(".part1_bt").on("click", function() {
       var duration = 10,
         maxstep = 2018,
         minstep = 1950;
       if (running == true) {
-        $("button").html("Play");
+        $(".part1_bt").html("Play");
         running = false;
         clearInterval(timer);
       } else if (running == false) {
-        $("button").html("Pause");
+        $(".part1_bt").html("Pause");
         sliderValue = $("#slider").val();
 
         timer = setInterval(function() {
@@ -179,7 +179,7 @@ async function part01EntryPoint() {
       update();
       $("#range").html($("#slider").val());
       clearInterval(timer);
-      $("button").html("Play");
+      $(".part1_bt").html("Play");
     });
   }
 }
