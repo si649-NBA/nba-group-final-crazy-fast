@@ -5,6 +5,15 @@
  * 
  */
 
+
+class NumericColumn {
+    constructor(name="", lineColor="") {
+        this.name = name 
+        this.className = `part-2--${this.name}--line`
+        this.lineColor = lineColor
+    }
+}
+
 function part02EntryPoint() {
     /**
      * TODO: Start coding here!
@@ -59,14 +68,41 @@ class WeighedHeightViz {
 
     async loadData() {
         this.data = await d3.csv("part-02-performance-viz/data/processed_all_positions_years_height_df.csv");
+        this.numericColumns = [
+            new NumericColumn('height_avg', 'gray'),
+            new NumericColumn('wed_h_by_orb_drb_sum_avg', 'purple'),
+            new NumericColumn('wed_h_by_PTS_avg', 'red'),
+            new NumericColumn('wed_h_by_AST_avg', 'orange'),
+            new NumericColumn('wed_h_by_BLK_avg', 'blue'),
+        ]
         this.data = this.data.map((d) => {
-            return {
-                year: d.year,
-                height: parseFloat(d.height),
-                weighed_height_by_orb_drb_sum: parseFloat(d.weighed_height_by_orb_drb_sum),
-                weighed_height_by_pts: parseFloat(d.weighed_height_by_pts),
+            let mappedD = { year: d.id };
+            for (let col of this.numericColumns.map((n) => n.name)) {
+                mappedD = Object.assign(mappedD, {
+                    [col]: +d[col]
+                })
             }
+            return mappedD
         })
+    }
+
+    concatenateArrays(arrays=[]) {
+        let resultArray = []
+        for (let arr of arrays) {
+            resultArray = resultArray.concat(arr)
+        }
+        return resultArray
+    }
+
+
+    getColumnDataArray(columnName="") {
+        return this.data.map((d) => d[columnName]);
+    }
+
+    computeYScaleMinMax(columnNames=[]) {
+        return d3.extent(this.concatenateArrays(
+            columnNames.map((col) => this.getColumnDataArray(col) )
+        ))
     }
 
     initScale() {
@@ -76,15 +112,11 @@ class WeighedHeightViz {
             .padding(0.1)
             ;
 
-        let yScaleValueInstances = this.data.map((d) => d.height).concat(
-            this.data.map((d) => d.weighed_height_by_orb_drb_sum)
-        ).concat(
-            this.data.map((d) => d.weighed_height_by_pts)
-        );
+        let [yMin, yMax] = this.computeYScaleMinMax(this.numericColumns.map((n) => n.name))
+
         this.y = d3.scaleLinear()
             .domain([
-                d3.min(yScaleValueInstances),
-                d3.max(yScaleValueInstances)
+                yMin, yMax
             ])
             .range([this.props.svgSpec.innerSize.height, 0])
             ;
@@ -109,26 +141,47 @@ class WeighedHeightViz {
     }
 
     drawLines() {
-        this.drawHeightLine({
-            columnName: 'height', 
-            className: 'part-02-height-line'
-        })
-        this.drawHeightLine({
-            columnName: 'weighed_height_by_orb_drb_sum', 
-            className: 'part-02-weighed-height-odrb-line'
-        })
-        this.drawHeightLine({
-            columnName: 'weighed_height_by_pts', 
-            className: 'part-02-weighed-height-pts-line'
-        })
-
+        for (let col of this.numericColumns) {
+            this.drawHeightLine({
+                columnName: col.name,
+                className: col.className,
+                lineColor: col.lineColor
+            })
+        }
+        // this.drawHeightLine({
+        //     columnName: 'height_avg', 
+        //     className: 'part-02-height-line',
+        //     lineColor: d3.color('gray')
+        // })
+        // this.drawHeightLine({
+        //     columnName: 'wed_h_by_PTS_avg', 
+        //     className: 'part-02-weighed-height-pts-line',
+        //     lineColor: d3.color('orange')
+        // })
+        // this.drawHeightLine({
+        //     columnName: 'wed_h_by_orb_drb_sum_avg', 
+        //     className: 'part-02-weighed-height-odrb-line',
+        //     lineColor: d3.color('red')
+        // })
+        // this.drawHeightLine({
+        //     columnName: 'wed_h_by_AST_avg', 
+        //     className: 'part-02--wed-h-ast-line',
+        //     lineColor: d3.color('red').darker()
+        // })
+        // this.drawHeightLine({
+        //     columnName: 'wed_h_by_BLK_avg', 
+        //     className: 'part-02--wed-h-blk-line',
+        //     lineColor: d3.color('red').darker().darker()
+        // })
+        
         
     }
 
     drawHeightLine(spec) {
-        let { columnName, className } = spec;
+        let { columnName, className, lineColor = "" } = spec;
         // not drawing the line! Calculating the data only.
         let line = d3.line()
+            .curve(d3.curveBasis)
             .x((d) => {
                 return this.x(d.year);
             })
@@ -142,8 +195,11 @@ class WeighedHeightViz {
 
         let path = this.svg.append("path")
             .datum(this.data) // data() VS datum(): https://stackoverflow.com/questions/13728402/what-is-the-difference-d3-datum-vs-data
-            .attr("class", className)
+            .attr("class", `${className} part-2--line`)
             .attr("d", line)
+            .styles({
+                stroke: lineColor
+            })
             ;
 
         let totalLength = path.node().getTotalLength();
