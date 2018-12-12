@@ -5,10 +5,6 @@ overwrite others' styling, and your styling won't be overwritten by others.
 
 **/
 
-.part-01-big-trend-timeseries {
-  background-color: #FED86F;
-}
-
 .part1_xaxis path,
 .part1_xaxis line {
     fill: none;
@@ -25,4 +21,9 @@ overwrite others' styling, and your styling won't be overwritten by others.
 .part1_point {
   fill: #2ec7c9;
   fill-opacity: 0.5;
+}
+
+.part1_position a {
+  font-size: 11px;
+  text-decoration: none;
 }
