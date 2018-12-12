@@ -5,6 +5,18 @@ overwrite others' styling, and your styling won't be overwritten by others.
 
 **/
 
-.part-01-rect {
-    fill: rgb(39, 51, 219);
+.part-01-big-trend-timeseries {
+  background-color: #FED86F;
+}
+
+.part1_xaxis path,
+.part1_xaxis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges; /*make it clear*/
+}
+
+.part1_xaxis text {
+    font-family: sans-serif;
+    font-size: 11px;
 }
