@@ -4,15 +4,11 @@ It's best practice to prefix `part-0x` to your CSS class, so you don't
 overwrite others' styling, and your styling won't be overwritten by others.
 
 **/
-
-.part1_xaxis path,
-.part1_xaxis line {
-    fill: none;
-    stroke: black;
-    shape-rendering: crispEdges;
+h2 {
+  text-align: left;
 }
 
-.part1_xaxis text {
+.part1_xlabel text {
     font-family: sans-serif;
     font-size: 11px;
     color: rgba(255, 255, 255, 0.6);
@@ -24,6 +20,28 @@ overwrite others' styling, and your styling won't be overwritten by others.
 }
 
 .part1_position a {
-  font-size: 11px;
+  font-size: 14px;
   text-decoration: none;
+  margin-right: 8px;
+}
+
+.part1_pg {
+  color: #6CB970;
+  margin-left: 50px;
+}
+
+.part1_sg {
+  color: #87D8FB;
+}
+
+.part1_sf {
+  color: #8EA2F9;
+}
+
+.part1_pf {
+  color: #E688F6;
+}
+
+.part1_c {
+  color: #FB8C86;
 }

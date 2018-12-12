@@ -14,7 +14,7 @@ async function part01EntryPoint() {
 
   let svg = d3.select(".part-01-my-svg").attrs({
     width: 700,
-    height: 350,
+    height: 450,
   }).append("g")
 
   /**
@@ -35,7 +35,7 @@ async function part01EntryPoint() {
   //find data in year 1950
   function findDataItem(data) {
     //console.log("filtering")
-    var part1_year = 2017;
+    var part1_year = 2016;
     var year = data.filter(function(d) {
       return d.year == part1_year;
     })
@@ -74,7 +74,7 @@ async function part01EntryPoint() {
       .range([padding, 700 - padding * 2]);
     part1_yScale = d3.scaleLinear()
       .domain([1.6, 2.3])
-      .range([350 - padding, padding]);
+      .range([450 - padding, padding]);
   }
 
   //set label
@@ -116,7 +116,7 @@ async function part01EntryPoint() {
 
     svg.append("g")
       .attr("class", "part1_axis")
-      .attr("transform", "translate(0," + (350 - padding) + ")") //move from top to bottom
+      .attr("transform", "translate(0," + (450 - padding) + ")") //move from top to bottom
       .call(xAxis)
 
     var yAxis = d3.axisLeft()
@@ -133,15 +133,16 @@ async function part01EntryPoint() {
     svg.append("text")
       .attr("class", "part1_xlabel")
       .attr("text-anchor", "end")
-      .attr("x", 500)
-      .attr("y", 350 - 6)
+      .attr("x", 500 + 70)
+      .attr("y", 450 - 70)
       .text("Weight (kg)");
+
 
     svg.append("text")
       .attr("class", "part1_ylabel")
       .attr("text-anchor", "end")
       .attr("y", 6)
-      .attr("dy", "2.5em")
+      .attr("dy", "4em")
       .attr("transform", "rotate(-90)")
       .text("Height (m)");
   }
