@@ -5,17 +5,11 @@ overwrite others' styling, and your styling won't be overwritten by others.
 
 **/
 
-/* .part-02-performance-viz {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.part-02-header {
-    max-width: 50vw;
-} */
-
 .part-2--line {
     stroke-width: 2.5px;
     fill: none;
+}
+
+[class^=part-2--][class$=-checkbox--label] {
+    text-transform: capitalize;
 }
