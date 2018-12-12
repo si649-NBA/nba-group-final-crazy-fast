@@ -45,3 +45,44 @@ h2 {
 .part1_c {
   color: #FB8C86;
 }
+
+.part-01-big-trend-timeseries{
+	margin:2rem 6%;
+}
+
+.part1_content{
+	display:flex;
+	flex-direction:row;
+	flex-wrap:nowrap
+	justify-content:space-between;
+}
+
+.part1_outputs{
+	width: 50%;
+	margin-right:5%;
+}
+.part1_text{
+	margin-left:5%;
+	width:40%;
+}
+
+#play{
+	margin-left:60%;
+	width:120px;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 15px;
+    /* background-color: aquamarine; */
+    border-radius: 30px;
+    margin-top: 12px;
+	border:1px solid white;
+	background-repeat: repeat-x;
+	background-position: 0 -100%;
+	transition: 0.35s ease;
+}
+
+#play:hover{
+	background-color:#F9D04D;
+	cursor:pointer
+	border:1px solid #F9D04D;
+}

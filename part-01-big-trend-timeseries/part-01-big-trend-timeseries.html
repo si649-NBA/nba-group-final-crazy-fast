@@ -6,19 +6,32 @@
     <h2>
     NBA player's size changes over time.
     </h2>
-    <p class="part1_position">
-      <a class="part1_pg" href="https://en.wikipedia.org/wiki/Point_guard" target="_blank">Point Guard</a>
-      <a class="part1_sg" href="https://en.wikipedia.org/wiki/Shooting_guard" target="_blank">Shooting Guard </a>
-      <a class="part1_sf" href="https://en.wikipedia.org/wiki/Small_forward" target="_blank">Small Forward</a>
-      <a class="part1_pf" href="https://en.wikipedia.org/wiki/Power_forward_(basketball)" target="_blank">Power Forward</a>
-      <a class="part1_c" href="https://en.wikipedia.org/wiki/Center_(basketball)" target="_blank">Center</a>
-    </p>
-    <svg class="part-01-my-svg">
-    </svg>
-    <div>
-      <input id="slider" type="range" min="1950" max="2018" value="1950" step="1" />
-      <span id="range">1950</span>
-      <button class="part1_bt" name="play" id="play">Play</button>
-    </div>
+	<div class="part1_content">
+		<div class="part1_outputs">
+			<p class="part1_position">
+			  <a class="part1_pg" href="https://en.wikipedia.org/wiki/Point_guard" target="_blank">Point Guard</a>
+			  <a class="part1_sg" href="https://en.wikipedia.org/wiki/Shooting_guard" target="_blank">Shooting Guard </a>
+			  <a class="part1_sf" href="https://en.wikipedia.org/wiki/Small_forward" target="_blank">Small Forward</a>
+			  <a class="part1_pf" href="https://en.wikipedia.org/wiki/Power_forward_(basketball)" target="_blank">Power Forward</a>
+			  <a class="part1_c" href="https://en.wikipedia.org/wiki/Center_(basketball)" target="_blank">Center</a>
+			</p>
+			<svg class="part-01-my-svg">
+			</svg>
+			<div>
+			  <input id="slider" type="range" min="1950" max="2018" value="1950" step="1" />
+			  <span id="range">1950</span>
+			  <button class="part1_bt" name="play" id="play">Play</button>
+			</div>
+		</div>
+		<div class="part1_text">
+			<p>To better communicate this with the audience, we separated our visualization into four parts and used the combination of scatter plot, line chart, and bar chart. Users can use the slide bar to explore the changes over time. </p>
+			<br>
+			<p>The major part of this visualization is the scatter plot of player’s height and weight. The X axis is weight and Y-axis is height. Each circle on the canvas represents one player, and different positions are encoded by different colors. We also added two trend lines to show the average height and weight level each year. </p>
+			<br><p>Beside the scatter plot are two bar charts, which represented the player’s weight distribution and height distribution of the year. For the bar chart on the top, the X-axis is the weight range and the Y-axis is the number of players. On the top right corner, we created a line chart to represent the trend of size changing. The X-axis is weight and the Y-axis is height. From this chart, the trend can be detected in an intuitive way.</p>
+		</div>
+	</div>
+
+
+
     <!-- <svg class="part-01-my-svg"></svg> -->
 </div>

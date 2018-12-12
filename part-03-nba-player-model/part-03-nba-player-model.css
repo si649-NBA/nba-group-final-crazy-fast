@@ -80,7 +80,7 @@ h4{
 }
 
 .part-03-nba-player-model{
-	margin:2rem 15%;
+	margin:2rem 6%;
 }
 
 .positionfilter,.heightfilter, .weightfilter {
@@ -144,7 +144,7 @@ h4{
 
 
 
-#filterbtn {
+#part3filterbtn {
 	margin-left:60%;
 	width:50%;
     font-size: 14px;
@@ -159,15 +159,12 @@ h4{
 	transition: 0.35s ease;
 }
 
-#filterbtn:hover{
+#part3filterbtn:hover{
 	background-color:#F9D04D;
 	cursor:pointer
 	border:1px solid #F9D04D;
 }
 
-#filterbtn::after{
-	outline:none;
-}
 
 label {
     display: block;
