@@ -1,29 +1,62 @@
+@lightfont {
+  font-family: 'mwlight';
+  src: url('/fonts/Merriweather-Light.ttf') format('truetype');
+}
+@lightitalicfont {
+  font-family: 'mwlightitalic';
+  src: url('/fonts/Merriweather-LightItalic.ttf') format('truetype');
+}
+@regularfont {
+  font-family: 'mwregular';
+  src: url('/fonts/Merriweather-Regular.ttf') format('truetype');
+}
+@italicfont {
+  font-family: 'mwitalic';
+  src: url('/fonts/Merriweather-Italic.ttf') format('truetype');
+}
+@boldfont {
+  font-family: 'mwbold';
+  src: url('/fonts/Merriweather-Bold.ttf') format('truetype');
+}
+@bolditalicfont {
+  font-family: 'mwbolditalic';
+  src: url('/fonts/Merriweather-BoldItalic.ttf') format('truetype');
+}
+@blackfont {
+  font-family: 'mwblack';
+  src: url('/fonts/Merriweather-Black.ttf') format('truetype');
+}
+@blackitalicfont {
+  font-family: 'mwblackitalic';
+  src: url('/fonts/Merriweather-BlackItalic.ttf') format('truetype');
+}
 body {
   padding: 0;
-  font-family: 'Dosis', sans-serif;
+  font-family: mwregular;
   display: flex;
   justify-content: center;
   flex-direction: column;
   flex-wrap: nowrap;
   background-color: #0e1822;
   color: #FFFFFF;
-  background-image: url('img/titlebackground_03.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  font-size: 1.2rem;
 }
 h2 {
   text-decoration: underline;
   text-decoration-color: #F9D04D;
 }
 .main_content {
-  margin: 2rem 3% 2rem 17%;
+  margin: 2rem 3% 2rem 3%;
 }
 .header {
   height: 768px;
   margin-bottom: 5rem;
 }
 .header h1 {
+  font-family: mwblack;
   margin: 2rem 15%;
   padding-top: 2rem;
   font-size: 5rem;
@@ -40,46 +73,29 @@ h2 {
   letter-spacing: 5px;
 }
 .introbox h1 {
-  margin-top: 9rem;
+  margin-top: 6rem;
   text-decoration: underline;
   text-decoration-color: #F9D04D;
 }
-.sidenav {
-  text-align: left;
-  text-decoration: none;
-  color: #AEADB0;
-  width: 20%;
-  position: fixed;
-  letter-spacing: 2px;
-  top: 18rem;
-  margin-left: 1rem;
-  left: 2rem;
-  padding: 8px 0;
-}
-.sidenav ul li {
-  margin-bottom: 1rem;
-}
-.sidenav ul li a {
-  text-decoration: none;
-  color: #AEADB0;
-}
-.sidenav ul li a:hover {
-  color: #F9D04D;
+.introbox h2 {
+  margin-left: 15%;
+  text-decoration: underline;
+  text-decoration-color: #F9D04D;
 }
 #part_one {
-  margin: 2rem 15%;
+  margin: 2rem 3%;
   padding-top: 1rem;
   height: 50rem;
   margin-top: 5rem;
 }
 #part_two {
-  margin: 2rem 15%;
+  margin: 2rem 3%;
   padding-top: 1rem;
   height: 50rem;
   margin-top: 5rem;
 }
 #part_three {
-  margin: 2rem 15%;
+  margin: 2rem 3%;
   padding-top: 1rem;
   height: 50rem;
   margin-top: 5rem;
