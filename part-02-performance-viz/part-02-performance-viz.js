@@ -67,7 +67,8 @@ class WeighedDataCheckbox {
             id: `part-2--${this.identifierText}-checkbox`
         })
         let label = $("<label>", {
-            for: checkbox.attr('id')
+            for: checkbox.attr('id'),
+            class: `${checkbox.attr('id')}--label`
         }).text(this.labelText)
         
         checkboxField
@@ -94,9 +95,10 @@ class DataCheckboxFilter {
 
     generateCheckboxes() {
         for (let f of this.fields) {
+            let labelText = f.replace(/_/g, ' ')
             let checkboxField = new WeighedDataCheckbox({
                 identifierText: f,
-                labelText: f
+                labelText
             })
             this.checkboxFields.push(checkboxField)
         }
@@ -121,7 +123,7 @@ class WeighedHeightViz {
             this.initScale()
             this.initAxis()
             this.initAxisLabels()
-            this.drawLines()
+            this.render()
         })
     }
 
@@ -201,6 +203,9 @@ class WeighedHeightViz {
     }
 
     drawLines() {
+        // transition
+        this.svg.select(`.part-2--line`).remove();
+
         for (let col of this.numericColumns) {
             this.drawHeightLine({
                 columnName: col.name,
@@ -223,9 +228,6 @@ class WeighedHeightViz {
             })
             ;
 
-        // transition
-        this.svg.select(`.${className}`).remove();
-
         let path = this.svg.append("path")
             .datum(this.data) // data() VS datum(): https://stackoverflow.com/questions/13728402/what-is-the-difference-d3-datum-vs-data
             .attr("class", `${className} part-2--line`)
@@ -247,6 +249,10 @@ class WeighedHeightViz {
             .ease(d3.easeLinear)
             .attr("stroke-dashoffset", 0)
             ;
+    }
+
+    render() {
+        this.drawLines()
     }
 }
 
