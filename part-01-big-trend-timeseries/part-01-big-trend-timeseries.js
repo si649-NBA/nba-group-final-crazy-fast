@@ -50,6 +50,7 @@ async function part01EntryPoint() {
       .data(data)
       .enter()
       .append("circle")
+      .attr("class", "part1_point")
       .attr("cx", function(d) {
         return part1_xScale(d.weight);
       })
@@ -167,7 +168,7 @@ async function part01EntryPoint() {
             $('#range').html(sliderValue);
           }
           $("#slider").val(sliderValue);
-          updateYear();
+        //updateYear();
         }, duration);
         running = true;
       }
