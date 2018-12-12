@@ -5,6 +5,7 @@
  * 
  */
 
+
 function part02EntryPoint() {
     /**
      * TODO: Start coding here!
@@ -33,13 +34,88 @@ function part02EntryPoint() {
         svgSpec
     });
 
+    let dataCheckboxFilter = new DataCheckboxFilter({
+        selector: '.part-2--weighed-filter',
+        fields: weighedHeightViz.numericColumns.map((c) => c.name)
+    })
+    
+}
 
+class NumericColumn {
+    constructor(name="", lineColor="") {
+        this.name = name 
+        this.className = `part-2--${this.name}--line`
+        this.lineColor = lineColor
+    }
+}
+
+class WeighedDataCheckbox {
+    constructor(props) {
+        let { identifierText="", labelText="" } = props;
+        this.identifierText = identifierText;
+        this.labelText = labelText;
+
+        this.checkbox = this.generatejQueryObject()
+    }
+
+    generatejQueryObject() {
+        let checkboxField = $("<div>", {
+            class: `part-2--checkbox-field`
+        })
+        let checkbox = $("<input>", {
+            type: `checkbox`,
+            id: `part-2--${this.identifierText}-checkbox`
+        })
+        let label = $("<label>", {
+            for: checkbox.attr('id')
+        }).text(this.labelText)
+        
+        checkboxField
+            .append(checkbox)
+            .append(label)
+        
+        return checkboxField
+    }
+}
+
+class DataCheckboxFilter {
+    constructor(props) {
+        let { selector, fields } = props;
+        this.selector = selector;
+        this.jQueryObject = $(selector);
+        this.fields = fields;
+        this.checkboxFields = [];
+
+        this.generateCheckboxes()
+        for (let ch of this.checkboxFields) {
+            this.jQueryObject.append(ch.checkbox)
+        }
+    }
+
+    generateCheckboxes() {
+        for (let f of this.fields) {
+            let checkboxField = new WeighedDataCheckbox({
+                identifierText: f,
+                labelText: f
+            })
+            this.checkboxFields.push(checkboxField)
+        }
+    }
 }
 
 /** TODO: Add your functions here! */
 class WeighedHeightViz {
     constructor(props) {
         this.props = props;
+
+        this.numericColumns = [
+            new NumericColumn('height_avg', 'gray'),
+            new NumericColumn('wed_h_by_orb_drb_sum_avg', 'purple'),
+            new NumericColumn('wed_h_by_PTS_avg', 'red'),
+            new NumericColumn('wed_h_by_AST_avg', 'orange'),
+            new NumericColumn('wed_h_by_BLK_avg', 'blue'),
+        ]
+
         this.loadData().then(() => {
             this.initVizSpace();
             this.initScale()
@@ -60,13 +136,33 @@ class WeighedHeightViz {
     async loadData() {
         this.data = await d3.csv("part-02-performance-viz/data/processed_all_positions_years_height_df.csv");
         this.data = this.data.map((d) => {
-            return {
-                year: d.year,
-                height: parseFloat(d.height),
-                weighed_height_by_orb_drb_sum: parseFloat(d.weighed_height_by_orb_drb_sum),
-                weighed_height_by_pts: parseFloat(d.weighed_height_by_pts),
+            let mappedD = { year: d.id };
+            for (let col of this.numericColumns.map((n) => n.name)) {
+                mappedD = Object.assign(mappedD, {
+                    [col]: +d[col]
+                })
             }
+            return mappedD
         })
+    }
+
+    concatenateArrays(arrays=[]) {
+        let resultArray = []
+        for (let arr of arrays) {
+            resultArray = resultArray.concat(arr)
+        }
+        return resultArray
+    }
+
+
+    getColumnDataArray(columnName="") {
+        return this.data.map((d) => d[columnName]);
+    }
+
+    computeYScaleMinMax(columnNames=[]) {
+        return d3.extent(this.concatenateArrays(
+            columnNames.map((col) => this.getColumnDataArray(col) )
+        ))
     }
 
     initScale() {
@@ -76,15 +172,11 @@ class WeighedHeightViz {
             .padding(0.1)
             ;
 
-        let yScaleValueInstances = this.data.map((d) => d.height).concat(
-            this.data.map((d) => d.weighed_height_by_orb_drb_sum)
-        ).concat(
-            this.data.map((d) => d.weighed_height_by_pts)
-        );
+        let [yMin, yMax] = this.computeYScaleMinMax(this.numericColumns.map((n) => n.name))
+
         this.y = d3.scaleLinear()
             .domain([
-                d3.min(yScaleValueInstances),
-                d3.max(yScaleValueInstances)
+                yMin, yMax
             ])
             .range([this.props.svgSpec.innerSize.height, 0])
             ;
@@ -109,26 +201,20 @@ class WeighedHeightViz {
     }
 
     drawLines() {
-        this.drawHeightLine({
-            columnName: 'height', 
-            className: 'part-02-height-line'
-        })
-        this.drawHeightLine({
-            columnName: 'weighed_height_by_orb_drb_sum', 
-            className: 'part-02-weighed-height-odrb-line'
-        })
-        this.drawHeightLine({
-            columnName: 'weighed_height_by_pts', 
-            className: 'part-02-weighed-height-pts-line'
-        })
-
-        
+        for (let col of this.numericColumns) {
+            this.drawHeightLine({
+                columnName: col.name,
+                className: col.className,
+                lineColor: col.lineColor
+            })
+        }
     }
 
     drawHeightLine(spec) {
-        let { columnName, className } = spec;
+        let { columnName, className, lineColor = "" } = spec;
         // not drawing the line! Calculating the data only.
         let line = d3.line()
+            .curve(d3.curveBasis)
             .x((d) => {
                 return this.x(d.year);
             })
@@ -142,8 +228,11 @@ class WeighedHeightViz {
 
         let path = this.svg.append("path")
             .datum(this.data) // data() VS datum(): https://stackoverflow.com/questions/13728402/what-is-the-difference-d3-datum-vs-data
-            .attr("class", className)
+            .attr("class", `${className} part-2--line`)
             .attr("d", line)
+            .styles({
+                stroke: lineColor
+            })
             ;
 
         let totalLength = path.node().getTotalLength();

@@ -15,20 +15,7 @@ overwrite others' styling, and your styling won't be overwritten by others.
     max-width: 50vw;
 } */
 
-.part-02-height-line {
-    stroke: gray;
-    stroke-width: 2.5px;
-    fill: none;
-}
-
-.part-02-weighed-height-odrb-line {
-    stroke: red;
-    stroke-width: 2.5px;
-    fill: none;
-}
-
-.part-02-weighed-height-pts-line {
-    stroke: orange;
+.part-2--line {
     stroke-width: 2.5px;
     fill: none;
 }

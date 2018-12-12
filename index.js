@@ -6,9 +6,14 @@ window.loadHtmlModuleSubject = new Subject();
 function loadHtmlModule(selector, htmlTemplatePath) {
     return new Promise((resolve, reject) => {
         try {
-            $(selector).load(htmlTemplatePath, () => {
-                // console.log(`html module loaded for ${selector}`)
-                resolve();
+            $.ajax({
+                url: htmlTemplatePath,
+                cache: false,
+                dataType: "html",
+                success: (data) => {
+                    $(selector).html(data)
+                    resolve()
+                }
             })
         }
         catch (error) {
