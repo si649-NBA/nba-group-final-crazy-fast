@@ -1,39 +1,7 @@
-@lightfont {
-  font-family: 'mwlight';
-  src: url('/fonts/Merriweather-Light.ttf') format('truetype');
-}
-@lightitalicfont {
-  font-family: 'mwlightitalic';
-  src: url('/fonts/Merriweather-LightItalic.ttf') format('truetype');
-}
-@regularfont {
-  font-family: 'mwregular';
-  src: url('/fonts/Merriweather-Regular.ttf') format('truetype');
-}
-@italicfont {
-  font-family: 'mwitalic';
-  src: url('/fonts/Merriweather-Italic.ttf') format('truetype');
-}
-@boldfont {
-  font-family: 'mwbold';
-  src: url('/fonts/Merriweather-Bold.ttf') format('truetype');
-}
-@bolditalicfont {
-  font-family: 'mwbolditalic';
-  src: url('/fonts/Merriweather-BoldItalic.ttf') format('truetype');
-}
-@blackfont {
-  font-family: 'mwblack';
-  src: url('/fonts/Merriweather-Black.ttf') format('truetype');
-}
-@blackitalicfont {
-  font-family: 'mwblackitalic';
-  src: url('/fonts/Merriweather-BlackItalic.ttf') format('truetype');
-}
 body {
   padding: 0;
   margin: 2rem;
-  font-family: mwregular;
+  font-family: 'Merriweather', serif;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -45,11 +13,6 @@ body {
   background-attachment: fixed;
   font-size: 1.2rem;
 }
-h2 {
-  font-size: 40px;
-  /* text-decoration: underline;
-  text-decoration-color: #F9D04D; */
-}
 .main_content {
   margin: 2rem 3% 2rem 3%;
 }
@@ -58,7 +21,7 @@ h2 {
   margin-bottom: 5rem;
 }
 .header h1 {
-  font-family: mwblack;
+  font-family: 'Merriweather', serif;
   margin: 2rem 5%;
   padding-top: 2rem;
   font-size: 5rem;
@@ -75,41 +38,25 @@ h2 {
 }
 .introbox h1 {
   margin-top: 6rem;
-  text-align: center;
-  /* text-decoration: underline;
-  text-decoration-color: #F9D04D; */
-}
-.introbox .subtitle {
-  margin-bottom: 3rem;
-  font-size: 25px;
-  font-weight: bold;
-  text-align: center;
 }
 .introbox h2 {
   margin-left: 15%;
-  font-size: 40px;
-  /* text-decoration: underline;
-  text-decoration-color: #F9D04D; */
-}
-.introbox p {
-  font-size: 1.1em;
-  line-height: 1.5em;
 }
 #part_one {
   margin: 2rem 3%;
   padding-top: 1rem;
   height: 50rem;
-  margin-top: 10rem;
+  margin-top: 5rem;
 }
 #part_two {
   margin: 2rem 3%;
   padding-top: 1rem;
   height: 50rem;
-  margin-top: 10rem;
+  margin-top: 5rem;
 }
 #part_three {
   margin: 2rem 3%;
   padding-top: 1rem;
   height: 50rem;
-  margin-top: 10rem;
+  margin-top: 5rem;
 }
