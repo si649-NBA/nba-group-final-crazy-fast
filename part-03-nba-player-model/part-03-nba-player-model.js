@@ -38,6 +38,11 @@ function part03EntryPoint() {
 /** TODO: Add your functions here! */
 
 function changeimg(){
+    for (let canvasDOM of $("canvas")) {
+        let context = canvasDOM.getContext('2d')
+        context.clearRect(0, 0, context.canvas.width, context.canvas.height)
+    }
+
     let choice_position = $('input[name=position]:checked').val();
     let choice_height = $('input[name=height]:checked').val();
     let choice_weight = $('input[name=weight]:checked').val();
@@ -145,6 +150,7 @@ function changeimg(){
     }
     else {
         console.log("no such player")
+        alert("Sorry! No player match. Please try another options.");
     }
 }
 
@@ -166,22 +172,23 @@ function drawradar(i) {
     ]
 
     var options = {
-        responsive: false,
-        maintainAspectRatio: true,
-        legend: false,
+        // responsive: false,
+        // maintainAspectRatio: true,
+        // legend: false,
         scale: {
             ticks: {
                 beginAtZero: true,
-                max: 5,
-                stepSize: 5
+                // max: 5,
+                // stepSize: 5
             }
+            // display: false
         }
     };      
     
     var dataLiteracy = {
         labels: ["Offense", "Defence", "Rebounding", "Potential"],
         datasets: [{
-            label: 'palyer attack type',
+            label: 'Player attack type',
             data: data[i],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)'
@@ -193,7 +200,7 @@ function drawradar(i) {
         }]
     };
     
-    var ctx = document.getElementById("radar");
+    var ctx = document.getElementById("radar").getContext('2d');
     var myRadarChart = new Chart(ctx, {
         type: 'radar',
         data: dataLiteracy,
@@ -223,21 +230,22 @@ function drawradar2(j) {
     ]
 
     var options = {
-        responsive: false,
-        maintainAspectRatio: true,
-        legend: false,
+        // responsive: false,
+        // maintainAspectRatio: true,
+        // legend: true,
         scale: {
             ticks: {
                 beginAtZero: true,
-                max: 5,
-                stepSize: 5,
+                // max: 5,
+                // stepSize: 5,
             }
+            // display:false
         }
     };
     var dataLiteracy = {
         labels: ["Close", "Medium", "3PT", "Free Throw","layup","Dunk"],
         datasets: [{
-            label: 'palyer shoot type',
+            label: 'Player shoot type',
             data: data[j],
             backgroundColor: [
                 'rgba(54, 162, 235, 0.2)'
@@ -249,7 +257,7 @@ function drawradar2(j) {
         }]
     };
     
-    var ctx = document.getElementById("radar2");
+    var ctx = document.getElementById("radar2").getContext('2d');
     var myRadarChart = new Chart(ctx, {
         type: 'radar',
         data: dataLiteracy,

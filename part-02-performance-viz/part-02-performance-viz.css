@@ -10,11 +10,6 @@ overwrite others' styling, and your styling won't be overwritten by others.
     fill: none;
 }
 
-[class^=part-2--][class$=-checkbox--label] {
-    text-transform: capitalize;
-}
-
-
 
 /* .part-02-performance-viz{
 	margin:2rem 6%;
@@ -64,14 +59,24 @@ header{
 }
 
 .part-2--checkbox-field label{
-	display:inline;
+    display:inline;
+    border-style: solid;
+    margin-left: 10px;
+    border-radius: 6px;
+    padding: 6px;
+
+    cursor: pointer;
+    text-transform: capitalize;
+
+    transition: background-color 0.2s, opacity 0.2s;
+}
+.part-2--checkbox-field label:hover {
+    opacity: 0.7;
+}
+.part-2--checkbox-field.checked label {
+    background-color: blueviolet;
 }
 
-.part-2--legend-rect {
-    width: 30px;
-    height: 30px;
-    border-radius: 5px;
-}
 
 .part-2--checkbox-field input[type=checkbox] {
   transform: scale(1.5);
@@ -81,19 +86,28 @@ header{
 .height-color--text {
     color: gray;
 }
-
 .pts-color--text {
     color: red;
 }
-
 .ast-color--text {
     color: orange;
 }
-
 .blk-color--text {
     color: blue;
 }
-
 .odrm-color--text {
     color: purple;
+}
+
+.pts-color--bg {
+    background-color: red;
+}
+.ast-color--bg {
+    background-color: orange;
+}
+.blk-color--bg {
+    background-color: blue;
+}
+.odrm-color--bg {
+    background-color: purple;
 }
