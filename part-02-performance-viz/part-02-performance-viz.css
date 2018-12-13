@@ -48,7 +48,7 @@ header{
 }
 
 .part-2--checkbox-field label{
-	display:inline;
+	display: flex;
 }
 
 .part-2--legend-rect {

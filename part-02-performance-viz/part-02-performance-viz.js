@@ -96,6 +96,8 @@ class WeighedDataCheckbox {
         let legendRect = $("<div>", {
             class: `part-2--legend-rect`
         })
+        let legendText = $("<span>")
+
         label.append(legendRect)
         
         checkboxField
