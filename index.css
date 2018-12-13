@@ -1,7 +1,7 @@
 body {
   padding: 0;
   margin: 2rem;
-  font-family: 'Merriweather', serif;
+  font-family: 'Merriweather Sans', sans-serif;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -21,7 +21,7 @@ body {
   margin-bottom: 5rem;
 }
 .header h1 {
-  font-family: 'Merriweather', serif;
+  font-family: 'Merriweather Sans', sans-serif;
   margin: 2rem 5%;
   padding-top: 2rem;
   font-size: 5rem;
