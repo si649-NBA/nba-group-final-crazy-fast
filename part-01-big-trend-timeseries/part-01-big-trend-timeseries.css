@@ -8,10 +8,16 @@ h2 {
   text-align: left;
 }
 
-.part1_xlabel text {
+.part1_xlabel {
     font-family: sans-serif;
     font-size: 11px;
-    color: rgba(255, 255, 255, 0.6);
+    fill: #ffffff;
+}
+
+.part1_ylabel {
+    font-family: sans-serif;
+    font-size: 11px;
+    fill: #ffffff;
 }
 
 .part1_point {
