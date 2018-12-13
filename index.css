@@ -77,6 +77,11 @@ h2 {
   /* text-decoration: underline;
   text-decoration-color: #F9D04D; */
 }
+.introbox .subtitle {
+  margin-bottom: 3rem;
+  font-size: 25px;
+  font-weight: bold;
+}
 .introbox h2 {
   margin-left: 15%;
   text-decoration: underline;
