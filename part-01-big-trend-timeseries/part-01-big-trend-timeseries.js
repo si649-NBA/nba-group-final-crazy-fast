@@ -44,7 +44,7 @@ async function part01EntryPoint() {
 
   //draw scatter plot
   function drawScatterPlot(data) {
-    var part1_colorScale = d3.scaleOrdinal(d3.schemeCategory20b); //color
+    //var part1_colorScale = d3.scaleOrdinal(d3.schemeCategory20b); //color
     //console.log("drawing")
     svg.selectAll("circle")
       .data(data)
@@ -59,9 +59,21 @@ async function part01EntryPoint() {
       })
       .attr("r", 3)
       .style("fill", function(d) {
-        return part1_colorScale(function(d) {
-          return d.position;
-        });
+        if (d.position == "PG") {
+          return "#6CB970";
+        }
+        if (d.postion == "SG") {
+          return "#87D8FB";
+        }
+        if (d.position == "SF") {
+          return "#8EA2F9";
+        }
+        if (d.position == "PF") {
+          return "#E688F6"
+        }
+        if (d.position == "C") {
+          return "#FB8C86"
+        }
       })
   //.style("fill", "white");
   }
