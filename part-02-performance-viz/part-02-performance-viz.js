@@ -37,12 +37,12 @@ function part02EntryPoint() {
     let dataCheckboxFilter = new DataCheckboxFilter({
         selector: '.part-2--weighed-filter',
         fields: weighedHeightViz.numericColumns.map((c) => {
-            console.log("hooo", c)
             return {
                 identifierText: c.name,
                 checked: c.isStatic,
                 lineColor: c.lineColor,
-                labelText: c.labelText
+                labelText: c.labelText,
+                classIdentifier: c.classIdentifier
             }
         })
     })
@@ -55,19 +55,20 @@ function part02EntryPoint() {
 }
 
 class NumericColumn {
-    constructor(name = "", lineColor = "", isStatic = false, labelText = "") {
+    constructor(name = "", lineColor = "", isStatic = false, labelText = "", classIdentifier = "") {
         this.name = name
         this.className = `part-2--${this.name}--line`
         this.lineColor = lineColor
         this.isStatic = isStatic
         this.labelText = labelText
+        this.classIdentifier = classIdentifier
     }
 }
 
 class WeighedDataCheckbox {
     constructor(props) {
-        let { identifierText = "", labelText = null, checked = false, lineColor = "" } = props;
-
+        let { identifierText = "", labelText = null, checked = false, lineColor = "", classIdentifier = "" } = props;
+        this.classIdentifier = classIdentifier
         this.identifierText = identifierText;
         this.labelText = labelText;
         this.lineColor = lineColor;
@@ -92,15 +93,10 @@ class WeighedDataCheckbox {
             for: checkbox.attr('id'),
             class: `${checkbox.attr('id')}--label`
         })
-        .text(this.labelText)
-
-        let legendRect = $("<div>", {
-            class: `part-2--legend-rect`
-        }).css("background-color", this.lineColor)
+            .text(this.labelText)
 
         checkboxField
             .append(checkbox)
-            .append(legendRect)
             .append(label)
 
 
@@ -110,6 +106,15 @@ class WeighedDataCheckbox {
     onCheckboxChange($event) {
         let targetCheckbox = $($event.target);
         this.checked = targetCheckbox.prop('checked')
+
+        /** background color for state */
+        let checkedBackgroundColorClassName = `${this.classIdentifier}-color--bg`;
+        if (this.checked) {
+            this.checkbox.children("label").addClass(checkedBackgroundColorClassName)
+        } else {
+            this.checkbox.children("label").removeClass(checkedBackgroundColorClassName)
+        }
+
         if (this.onChangeCallBack !== null) {
             this.onChangeCallBack({
                 checked: this.checked,
@@ -140,7 +145,8 @@ class DataCheckboxFilter {
                 identifierText: f.identifierText,
                 checked: f.checked,
                 lineColor: f.lineColor,
-                labelText: f.labelText
+                labelText: f.labelText,
+                classIdentifier: f.classIdentifier
             })
 
             checkboxField.onChangeCallBack = (event) => {
@@ -178,11 +184,11 @@ class WeighedHeightViz {
         this.props = props;
 
         this.numericColumns = [
-            new NumericColumn('height_avg', 'gray', true, 'Height'),
-            new NumericColumn('wed_h_by_orb_drb_sum_avg', 'purple', false, 'Height weighed by offensive/defensive rebound'),
-            new NumericColumn('wed_h_by_PTS_avg', 'red',false,  'Height weighed by points'),
-            new NumericColumn('wed_h_by_AST_avg', 'orange',false,  'Height weighed by assistant'),
-            new NumericColumn('wed_h_by_BLK_avg', 'blue',false,  'Height weighed by blocked shot'),
+            new NumericColumn('height_avg', 'gray', true, 'Height', 'height'),
+            new NumericColumn('wed_h_by_orb_drb_sum_avg', 'purple', false, 'Height weighed by rebound', 'odrm'),
+            new NumericColumn('wed_h_by_PTS_avg', 'red', false, 'Height weighed by points', 'pts'),
+            new NumericColumn('wed_h_by_AST_avg', 'orange', false, 'Height weighed by assistant', 'ast'),
+            new NumericColumn('wed_h_by_BLK_avg', 'blue', false, 'Height weighed by blocked shot', 'blk'),
         ]
 
         this.activeNumericColumns = this.numericColumns.filter((c) => c.name === 'height_avg');
@@ -209,7 +215,7 @@ class WeighedHeightViz {
         this.data = await d3.csv("part-02-performance-viz/data/processed_all_positions_years_height_df.csv");
         this.data = this.data.map((d) => {
             let mappedD = {
-                year: d.id
+                year: +d.id
             };
             for (let col of this.numericColumns.map((n) => n.name)) {
                 mappedD = Object.assign(mappedD, {
@@ -259,10 +265,33 @@ class WeighedHeightViz {
     initAxis() {
         this.xAxis = this.svg.append("g").attrs({
             transform: `translate(0, ${this.props.svgSpec.innerSize.height})`
-        }).call(d3.axisBottom(this.x))
+        }).call(
+            d3.axisBottom(this.x)
+                .tickValues(this.x.domain().filter(function (d, i) { return !(i % 4) }))
+        )
 
         this.yAxis = this.svg.append("g")
-            .call(d3.axisLeft(this.y))
+            .call(
+                d3.axisLeft(this.y)
+                    .ticks(6)
+            )
+
+        this.svg.append("text")
+            .attr("class", "part1_ylabel")
+            .attr("text-anchor", "end")
+            .attr("y", 10)
+            .attr("dy", "1em")
+            .attr("transform", "rotate(-90)")
+            .text("Height (m)");
+
+        this.svg.append("text")
+            .attr("class", "part1_xlabel")
+            .attr("text-anchor", "start")
+            .attr("dx", "-7rem")
+            .attr("dy", "-1rem")
+            .attr("x", this.props.svgSpec.innerSize.width)
+            .attr("y", this.props.svgSpec.innerSize.height)
+            .text("Year");
     }
 
     initAxisLabels() {
