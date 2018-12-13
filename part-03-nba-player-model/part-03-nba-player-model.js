@@ -42,24 +42,128 @@ function changeimg(){
     let choice_height = $('input[name=height]:checked').val();
     let choice_weight = $('input[name=weight]:checked').val();
     let img = "";
-    if (choice_position == "1") {
-        img = "img/jordan.png";
+    if (choice_position == "1" && choice_height == "3" && choice_weight == "3") {
+        img = "img/Embiid.png";
         var elem =  document.getElementById("img");
         elem.setAttribute("src", img);
-        drawradar();
-        drawradar2();
-        console.log(img);
-    } else if (choice_position == "5") {
-        img = "img/curry.png";
+        drawradar(1);
+        drawradar2(1);
+    } else if (choice_position == "1" && choice_height == "3" && choice_weight == "2") {
+        img = "img/Capela.png";
         var elem =  document.getElementById("img");
         elem.setAttribute("src", img);
-        drawradar();
-        drawradar2();
+        drawradar(2);
+        drawradar2(2);
         console.log(img);
-    };
+    } else if (choice_position == "1" && choice_height == "2" && choice_weight == "3") {
+        img = "img/Griffin.png";
+        var elem =  document.getElementById("img");
+        elem.setAttribute("src", img);
+        drawradar(3);
+        drawradar2(3);
+        console.log(img);
+    }
+    else if (choice_position == "1" && choice_height == "2" && choice_weight == "2") {
+        img = "img/Green.png";
+        var elem =  document.getElementById("img");
+        elem.setAttribute("src", img);
+        drawradar(4);
+        drawradar2(4);
+        console.log(img);
+    }
+    else if (choice_position == "2" && choice_height == "1" && choice_weight == "1") {
+        img = "img/Thomas.png";
+        var elem =  document.getElementById("img");
+        elem.setAttribute("src", img);
+        drawradar(5);
+        drawradar2(5);
+        console.log(img);
+    }
+    else if (choice_position == "2" && choice_height == "1" && choice_weight == "2") {
+        img = "img/Lowry.png";
+        var elem =  document.getElementById("img");
+        elem.setAttribute("src", img);
+        drawradar(6);
+        drawradar2(6);
+        console.log(img);
+    }
+    else if (choice_position == "2" && choice_height == "2" && choice_weight == "1") {
+        img = "img/Curry.png";
+        var elem =  document.getElementById("img");
+        elem.setAttribute("src", img);
+        drawradar(7);
+        drawradar2(7);
+        console.log(img);
+    }
+    else if (choice_position == "2" && choice_height == "2" && choice_weight == "2") {
+        img = "img/Wall.png";
+        var elem =  document.getElementById("img");
+        elem.setAttribute("src", img);
+        drawradar(8);
+        drawradar2(8);
+        console.log(img);
+    }
+    else if (choice_position == "3" && choice_height == "3" && choice_weight == "3") {
+        img = "img/James.png";
+        var elem =  document.getElementById("img");
+        elem.setAttribute("src", img);
+        drawradar(9);
+        drawradar2(9);
+        console.log(img);
+    }
+    else if (choice_position == "3" && choice_height == "3" && choice_weight == "2") {
+        img = "img/Antetokounmpo.png";
+        var elem =  document.getElementById("img");
+        elem.setAttribute("src", img);
+        drawradar(10);
+        drawradar2(10);
+        console.log(img);
+    }
+    else if (choice_position == "3" && choice_height == "2" && choice_weight == "1") {
+        img = "img/Ingram.png";
+        var elem =  document.getElementById("img");
+        elem.setAttribute("src", img);
+        drawradar(11);
+        drawradar2(11);
+        console.log(img);
+    }
+    else if (choice_position == "3" && choice_height == "2" && choice_weight == "3") {
+        img = "img/Tucker.png";
+        var elem =  document.getElementById("img");
+        elem.setAttribute("src", img);
+        drawradar(12);
+        drawradar2(12);
+        console.log(img);
+    }
+    else if (choice_position == "3" && choice_height == "2" && choice_weight == "2") {
+        img = "img/Durant.png";
+        var elem =  document.getElementById("img");
+        elem.setAttribute("src", img);
+        drawradar(13);
+        drawradar2(13);
+        console.log(img);
+    }
+    else {
+        console.log("no such player")
+    }
 }
 
-function drawradar() {
+function drawradar(i) {
+
+    var data = [
+        [5,4,5,5],
+        [3,4,5,3],
+        [5,3,4,4],
+        [3,5,4,4],
+        [4,2,2,3],
+        [5,3,3,5],
+        [4,4,3,3],
+        [5,5,4,4],
+        [5,4,5,5],
+        [3,3,3,4],
+        [3,2,3,2],
+        [5,4,4,5]
+    ]
 
     var options = {
         responsive: false,
@@ -72,13 +176,13 @@ function drawradar() {
                 stepSize: 5
             }
         }
-    };
+    };      
     
     var dataLiteracy = {
         labels: ["Offense", "Defence", "Rebounding", "Potential"],
         datasets: [{
             label: 'palyer attack type',
-            data: [5, 3, 2, 4],
+            data: data[i],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)'
             ],
@@ -100,7 +204,23 @@ function drawradar() {
 
 }
 
-function drawradar2() {
+function drawradar2(j) {
+
+    var data = [
+        [5,4,3,5,5,5],
+        [5,3,1,2,3,5],
+        [5,4,3,3,5,5],
+        [3,3,3,4,3,3],
+        [3,4,4,5,4,1],
+        [4,3,4,5,4,1],
+        [5,5,5,5,5,1],
+        [5,3,3,3,5,4],
+        [5,5,4,5,5,5],
+        [5,3,2,3,4,5],
+        [4,4,3,5,3,3],
+        [4,2,3,4,2,3],
+        [5,5,5,5,5,5]
+    ]
 
     var options = {
         responsive: false,
@@ -118,7 +238,7 @@ function drawradar2() {
         labels: ["Close", "Medium", "3PT", "Free Throw","layup","Dunk"],
         datasets: [{
             label: 'palyer shoot type',
-            data: [3, 4, 5, 5, 5, 1],
+            data: data[j],
             backgroundColor: [
                 'rgba(54, 162, 235, 0.2)'
             ],

@@ -59,6 +59,8 @@ git checkout master
 
 # Reference
 
+- [Using Material Components for Web](https://github.com/material-components/material-components-web) by CDN.
+  - [All Components API](https://github.com/material-components/material-components-web/tree/master/packages). Click in each folder and you'll see the doc at the bottom!
 - gh-page --> needs npm --> needs webpack
   - seems it's hard to just setup webpack manually. it's best to just use create-react-app, and use as little as you can about JSX, props and states. (Just use them as plain html/css/javascript) But indeed there're issues and react may need further cautions...
   - so indeed the current approach is the best for now!
