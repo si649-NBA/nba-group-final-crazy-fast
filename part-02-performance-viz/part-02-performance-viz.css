@@ -22,13 +22,21 @@ overwrite others' styling, and your styling won't be overwritten by others.
 
 
 .part-2--weighed-filter{
-	width:25%;
+
+	font-size:0.8rem;
+	width:30%;
 	display:flex;
 	flex-direction:column;
 	flex-wrap:nowrap;
 	justify-content: space-between;
-	height:50px;
-	margin-top:1rem;
+	margin-top:8rem;
+	margin-bottom:2rem;
+	margin-left:2rem;
+
+}
+
+.part-2--weighed-filter input{
+	display:none;
 }
 
 .part2_chart{
@@ -49,6 +57,10 @@ header{
 
 .part-2--checkbox-field{
 	margin:0.5rem 0;
+	display:flex;
+	flex-direction:row;
+	justify-content: flex-start;
+	flex-wrap:wrap;
 }
 
 .part-2--checkbox-field label{
