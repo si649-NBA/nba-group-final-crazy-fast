@@ -12,7 +12,7 @@ async function part01EntryPoint() {
    * Below are example code, feel free to delete them.
    */
 
-  let svg = d3.select(".part-01-my-svg").attrs({
+  PART_01_SVG = d3.select(".part-01-my-svg").attrs({
     width: 600,
     height: 450,
   }).append("g")
@@ -25,17 +25,16 @@ async function part01EntryPoint() {
    */
   let data = await d3.csv("part-01-big-trend-timeseries/data/data.csv")
   //console.log("dataload complete")
-  DATA = data;
+
+  SLIDER_VALUE = 1950
   setScale();
-  drawScatterPlot(findDataItem(data));
+  drawScatterPlot(findDataItem(data, SLIDER_VALUE));
   setAxis();
-  setTime();
+  setTime(data);
   //setLabel();
 
   //find data in year 1950
-  function findDataItem(data) {
-    //console.log("filtering")
-    var part1_year = 1992;
+  function findDataItem(data, part1_year) {
     var year = data.filter(function(d) {
       return d.year == part1_year;
     })
@@ -44,7 +43,9 @@ async function part01EntryPoint() {
 
   //draw scatter plot
   function drawScatterPlot(data) {
-    svg.selectAll("circle")
+    PART_01_SVG.selectAll("circle").remove()
+
+    PART_01_SVG.selectAll("circle")
       .data(data)
       .enter()
       .append("circle")
@@ -89,7 +90,7 @@ async function part01EntryPoint() {
 
   //set label
   function setLabel(data) {
-    svg.selectAll("text")
+    PART_01_SVG.selectAll("text")
       .data(data)
       .enter()
       .append("text")
@@ -107,7 +108,7 @@ async function part01EntryPoint() {
       })
       .style("display", "none");
 
-    svg.selectAll("circle")
+    PART_01_SVG.selectAll("circle")
       .on("mousemove", function(d) {
         $("[id=text" + d.name + "]").show();
       })
@@ -124,7 +125,7 @@ async function part01EntryPoint() {
       .ticks(10) //set number of ticks
       //d.tickFormat(d3.format(".0s"));
 
-    svg.append("g")
+    PART_01_SVG.append("g")
       .attr("class", "part1_axis")
       .attr("transform", "translate(0," + (450 - padding) + ")") //move from top to bottom
       .call(xAxis)
@@ -134,35 +135,35 @@ async function part01EntryPoint() {
       .ticks(6)
       .tickFormat(d3.format(",.1f"));
 
-    svg.append("g")
+    PART_01_SVG.append("g")
       .attr("class", "part1_axis")
       .attr("transform", "translate(" + padding + ",0)")
       .call(yAxis);
 
     //add x&y label
-    svg.append("text")
+    PART_01_SVG.append("text")
       .attr("class", "part1_xlabel")
       .attr("text-anchor", "end")
-      .attr("x", 500 + 70)
-      .attr("y", 450 - 70)
+      .attr("x", 500 + 40)
+      .attr("y", 450 - 50)
       .text("Weight (kg)");
 
 
-    svg.append("text")
+    PART_01_SVG.append("text")
       .attr("class", "part1_ylabel")
       .attr("text-anchor", "end")
-      .attr("y", 6)
+      .attr("y", 10)
       .attr("dy", "4em")
       .attr("transform", "rotate(-90)")
       .text("Height (m)");
   }
 
-  function setTime() {
+  function setTime(data) {
     var running = false;
     var timer;
     $(".part1_bt").on("click", function() {
-      var duration = 10,
-        maxstep = 2018,
+      var duration = 100,
+        maxstep = 2017,
         minstep = 1950;
       if (running == true) {
         $(".part1_bt").html("Play");
@@ -170,16 +171,16 @@ async function part01EntryPoint() {
         clearInterval(timer);
       } else if (running == false) {
         $(".part1_bt").html("Pause");
-        sliderValue = $("#slider").val();
+        SLIDER_VALUE = $("#slider").val();
 
         timer = setInterval(function() {
-          if (sliderValue < maxstep) {
-            sliderValue++;
-            $("#slider").val(sliderValue);
-            $('#range').html(sliderValue);
+          if (SLIDER_VALUE < maxstep) {
+            SLIDER_VALUE++;
+            $("#slider").val(SLIDER_VALUE);
+            $('#range').html(SLIDER_VALUE);
           }
-          $("#slider").val(sliderValue);
-        //updateYear();
+          $("#slider").val(SLIDER_VALUE);
+          drawScatterPlot(findDataItem(data, SLIDER_VALUE));
         }, duration);
         running = true;
       }

@@ -1,8 +1,8 @@
 /**
- * Avoid putting code outside of functions (global space), so you won't 
- * overwrite other's code / be overwritten accidentally. Try to only put 
+ * Avoid putting code outside of functions (global space), so you won't
+ * overwrite other's code / be overwritten accidentally. Try to only put
  * your code in functions, class, or in the $(document).ready(...) function.
- * 
+ *
  */
 
 
@@ -37,9 +37,12 @@ function part02EntryPoint() {
     let dataCheckboxFilter = new DataCheckboxFilter({
         selector: '.part-2--weighed-filter',
         fields: weighedHeightViz.numericColumns.map((c) => {
+            console.log("hooo", c)
             return {
                 identifierText: c.name,
-                checked: c.isStatic
+                checked: c.isStatic,
+                lineColor: c.lineColor,
+                labelText: c.labelText
             }
         })
     })
@@ -48,31 +51,29 @@ function part02EntryPoint() {
         let { checkedBoxesIdentifierText } = event;
         weighedHeightViz.update(checkedBoxesIdentifierText)
     }
-    
+
 }
 
 class NumericColumn {
-    constructor(name="", lineColor="", isStatic=false) {
-        this.name = name 
+    constructor(name = "", lineColor = "", isStatic = false, labelText = "") {
+        this.name = name
         this.className = `part-2--${this.name}--line`
         this.lineColor = lineColor
         this.isStatic = isStatic
+        this.labelText = labelText
     }
 }
 
 class WeighedDataCheckbox {
     constructor(props) {
-        let {
-            identifierText="", 
-            labelText="",
-            checked=false,
-        } = props;
+        let { identifierText = "", labelText = null, checked = false, lineColor = "" } = props;
 
         this.identifierText = identifierText;
         this.labelText = labelText;
+        this.lineColor = lineColor;
         this.checkbox = this.generatejQueryObject();
         this.onChangeCallBack = null;
-        
+
         this.checked = checked
     }
 
@@ -90,12 +91,19 @@ class WeighedDataCheckbox {
         let label = $("<label>", {
             for: checkbox.attr('id'),
             class: `${checkbox.attr('id')}--label`
-        }).text(this.labelText)
-        
+        })
+        .text(this.labelText)
+
+        let legendRect = $("<div>", {
+            class: `part-2--legend-rect`
+        }).css("background-color", this.lineColor)
+
         checkboxField
             .append(checkbox)
+            .append(legendRect)
             .append(label)
-        
+
+
         return checkboxField
     }
 
@@ -113,18 +121,14 @@ class WeighedDataCheckbox {
 
 class DataCheckboxFilter {
     constructor(props) {
-        let {
-            selector, 
-            fields,
-        } = props;
+        let { selector, fields, } = props;
         this.selector = selector;
         this.jQueryObject = $(selector);
         this.fields = fields.filter((f) => f.identifierText !== 'height_avg');
-
         this.checkboxFields = [];
 
         this.generateCheckboxes()
-        
+
         for (let ch of this.checkboxFields.map((cbx) => cbx.dom)) {
             this.jQueryObject.append(ch.checkbox)
         }
@@ -134,8 +138,9 @@ class DataCheckboxFilter {
         for (let f of this.fields) {
             let checkboxField = new WeighedDataCheckbox({
                 identifierText: f.identifierText,
-                labelText: f.identifierText.replace(/_/g, ' '),
-                checked: f.checked
+                checked: f.checked,
+                lineColor: f.lineColor,
+                labelText: f.labelText
             })
 
             checkboxField.onChangeCallBack = (event) => {
@@ -159,7 +164,7 @@ class DataCheckboxFilter {
             })
         }
 
-        
+
     }
 
     setOnChangeCallback(callback) {
@@ -173,14 +178,14 @@ class WeighedHeightViz {
         this.props = props;
 
         this.numericColumns = [
-            new NumericColumn('height_avg', 'gray', true),
-            new NumericColumn('wed_h_by_orb_drb_sum_avg', 'purple'),
-            new NumericColumn('wed_h_by_PTS_avg', 'red'),
-            new NumericColumn('wed_h_by_AST_avg', 'orange'),
-            new NumericColumn('wed_h_by_BLK_avg', 'blue'),
+            new NumericColumn('height_avg', 'gray', true, 'Height'),
+            new NumericColumn('wed_h_by_orb_drb_sum_avg', 'purple', false, 'Height adjusted by offensive/defensive rebound'),
+            new NumericColumn('wed_h_by_PTS_avg', 'red',false,  'Height adjusted by points'),
+            new NumericColumn('wed_h_by_AST_avg', 'orange',false,  'Height adjusted by assistant'),
+            new NumericColumn('wed_h_by_BLK_avg', 'blue',false,  'Height adjusted by blocked shot'),
         ]
 
-        this.activeNumericColumns = this.numericColumns.filter((c) => c.name === 'height_avg' );
+        this.activeNumericColumns = this.numericColumns.filter((c) => c.name === 'height_avg');
 
         this.loadData().then(() => {
             this.initVizSpace();
@@ -203,7 +208,9 @@ class WeighedHeightViz {
     async loadData() {
         this.data = await d3.csv("part-02-performance-viz/data/processed_all_positions_years_height_df.csv");
         this.data = this.data.map((d) => {
-            let mappedD = { year: d.id };
+            let mappedD = {
+                year: d.id
+            };
             for (let col of this.numericColumns.map((n) => n.name)) {
                 mappedD = Object.assign(mappedD, {
                     [col]: +d[col]
@@ -213,7 +220,7 @@ class WeighedHeightViz {
         })
     }
 
-    concatenateArrays(arrays=[]) {
+    concatenateArrays(arrays = []) {
         let resultArray = []
         for (let arr of arrays) {
             resultArray = resultArray.concat(arr)
@@ -222,13 +229,13 @@ class WeighedHeightViz {
     }
 
 
-    getColumnDataArray(columnName="") {
+    getColumnDataArray(columnName = "") {
         return this.data.map((d) => d[columnName]);
     }
 
-    computeYScaleMinMax(columnNames=[]) {
+    computeYScaleMinMax(columnNames = []) {
         return d3.extent(this.concatenateArrays(
-            columnNames.map((col) => this.getColumnDataArray(col) )
+            columnNames.map((col) => this.getColumnDataArray(col))
         ))
     }
 
@@ -255,7 +262,7 @@ class WeighedHeightViz {
         }).call(d3.axisBottom(this.x))
 
         this.yAxis = this.svg.append("g")
-        .call(d3.axisLeft(this.y))
+            .call(d3.axisLeft(this.y))
     }
 
     initAxisLabels() {
@@ -298,8 +305,7 @@ class WeighedHeightViz {
             })
             .y((d) => {
                 return this.y(d[columnName]);
-            })
-            ;
+            });
 
         let path = this.svg.append("path")
             .datum(this.data) // data() VS datum(): https://stackoverflow.com/questions/13728402/what-is-the-difference-d3-datum-vs-data
@@ -307,8 +313,7 @@ class WeighedHeightViz {
             .attr("d", line)
             .styles({
                 stroke: lineColor
-            })
-            ;
+            });
 
         let totalLength = path.node().getTotalLength();
 
@@ -317,14 +322,14 @@ class WeighedHeightViz {
                 "stroke-dasharray": `${totalLength} ${totalLength}`,
                 "stroke-dashoffset": totalLength,
             })
-        .transition()
+            .transition()
             .duration(1000)
             .ease(d3.easeLinear)
             .attr("stroke-dashoffset", 0)
             ;
     }
 
-    update(columns=[]) {
+    update(columns = []) {
         this.activeNumericColumns = columns.map((col) => {
             return this.numericColumns.find((c) => c.name === col)
         })
