@@ -74,8 +74,8 @@ h2 {
 }
 .introbox h1 {
   margin-top: 6rem;
-  text-decoration: underline;
-  text-decoration-color: #F9D04D;
+  /* text-decoration: underline;
+  text-decoration-color: #F9D04D; */
 }
 .introbox h2 {
   margin-left: 15%;
