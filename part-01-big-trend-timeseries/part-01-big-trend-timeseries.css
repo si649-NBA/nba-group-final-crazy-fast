@@ -4,6 +4,7 @@ It's best practice to prefix `part-0x` to your CSS class, so you don't
 overwrite others' styling, and your styling won't be overwritten by others.
 
 **/
+
 h2 {
   text-align: left;
 }
