@@ -6,7 +6,7 @@ overwrite others' styling, and your styling won't be overwritten by others.
 **/
 
 .part-2--line {
-    stroke-width: 2.5px;
+    stroke-width: 5px;
     fill: none;
 }
 
@@ -43,7 +43,7 @@ header{
 }
 
 .part-02-my-svg{
-	width: 60%
+	width: 60%;
 	margin-right:5%;
 }
 
@@ -53,6 +53,12 @@ header{
 
 .part-2--checkbox-field label{
 	display:inline;
+}
+
+.part-2--legend-rect {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
 }
 
 .part-2--checkbox-field input[type=checkbox] {
