@@ -28,7 +28,7 @@ overwrite others' styling, and your styling won't be overwritten by others.
 	flex-wrap:nowrap;
 	justify-content: space-between;
 	height:50px;
-	margin-top:10rem;
+	margin-top:1rem;
 }
 
 .part2_chart{
