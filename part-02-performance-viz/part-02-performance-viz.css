@@ -21,57 +21,31 @@ overwrite others' styling, and your styling won't be overwritten by others.
 }
 
 
-
-label {
-	font-size: 1.2rem;
-	padding: 5px;
-	padding-left:0px;
-	margin: 10px;
-	margin-left:0;
-	border-radius: 4px;
-	border: 1px solid #AEADB0;
-	color: #AEADB0;
-	background-color: transparent;
-	line-height: 1;
-	box-sizing: border-box;
-	cursor: pointer;
-	white-space: nowrap;
-	background-repeat: repeat-x;
-	background-position: 0 -100%;
-	transition: 0.35s ease;
-	&:hover {
-		border: 1px solid #F9D04D;
-		color: #F9D04D;
-	};
-
-}
-
-label:hover{
-	border: 1px solid #F9D04D;
-    background:#F9D04D;
-	color:#0e1822;
-}
-
-input {
-	display:none;
-}
-
-input[type=checkbox]:checked + label{
-  border: 1px solid #F9D04D;
-  background:#F9D04D;
-  color:#0e1822;
-}
-
-label{
-    display: block;
-    text-align: center;
-    width: 250px;
-}
-
 .part-2--weighed-filter{
-	width:100%;
+	width:25%;
+	display:flex;
+	flex-direction:column;
+	flex-wrap:nowrap;
+	justify-content: space-between;
+}
+
+.part2_chart{
 	display:flex;
 	flex-direction:row;
 	flex-wrap:wrap;
 	justify-content: space-between;
+}
+
+header{
+	margin-bottom:2rem;
+}
+
+.part-02-my-svg{
+	width: 60%
+	margin-right:5%;
+}
+
+label{
+	width:200px;
+	font-size:1rem;
 }
