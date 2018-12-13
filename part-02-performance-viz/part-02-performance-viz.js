@@ -179,10 +179,10 @@ class WeighedHeightViz {
 
         this.numericColumns = [
             new NumericColumn('height_avg', 'gray', true, 'Height'),
-            new NumericColumn('wed_h_by_orb_drb_sum_avg', 'purple', false, 'Height adjusted by offensive/defensive rebound'),
-            new NumericColumn('wed_h_by_PTS_avg', 'red',false,  'Height adjusted by points'),
-            new NumericColumn('wed_h_by_AST_avg', 'orange',false,  'Height adjusted by assistant'),
-            new NumericColumn('wed_h_by_BLK_avg', 'blue',false,  'Height adjusted by blocked shot'),
+            new NumericColumn('wed_h_by_orb_drb_sum_avg', 'purple', false, 'Height weighed by offensive/defensive rebound'),
+            new NumericColumn('wed_h_by_PTS_avg', 'red',false,  'Height weighed by points'),
+            new NumericColumn('wed_h_by_AST_avg', 'orange',false,  'Height weighed by assistant'),
+            new NumericColumn('wed_h_by_BLK_avg', 'blue',false,  'Height weighed by blocked shot'),
         ]
 
         this.activeNumericColumns = this.numericColumns.filter((c) => c.name === 'height_avg');
