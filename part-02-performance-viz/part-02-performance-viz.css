@@ -16,9 +16,9 @@ overwrite others' styling, and your styling won't be overwritten by others.
 
 
 
-.part-02-performance-viz{
+/* .part-02-performance-viz{
 	margin:2rem 6%;
-}
+} */
 
 
 .part-2--weighed-filter{
@@ -27,6 +27,8 @@ overwrite others' styling, and your styling won't be overwritten by others.
 	flex-direction:column;
 	flex-wrap:nowrap;
 	justify-content: space-between;
+	height:50px;
+	top:50%;
 }
 
 .part2_chart{
@@ -45,9 +47,8 @@ header{
 	margin-right: 5%;
 }
 
-label{
-	width:200px;
-	font-size:1rem;
+.part-2--checkbox-field label{
+	display:inline;
 }
 
 .part-2--legend-rect {
