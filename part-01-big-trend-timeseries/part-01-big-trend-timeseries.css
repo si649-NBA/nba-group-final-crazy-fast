@@ -60,10 +60,16 @@ h2 {
 .part1_outputs{
 	width: 50%;
 	margin-right:5%;
+	height:100%;
 }
 .part1_text{
+	height:500px;
 	margin-left:5%;
 	width:40%;
+	overflow-y:auto;
+}
+h5{
+	color:#F8C331;
 }
 
 #play{
