@@ -184,11 +184,11 @@ class WeighedHeightViz {
     this.props = props;
 
     this.numericColumns = [
-      new NumericColumn('height_avg', 'gray', true, 'Height', 'height'),
-      new NumericColumn('wed_h_by_orb_drb_sum_avg', 'purple', false, 'Height weighed by rebounds', 'odrm'),
-      new NumericColumn('wed_h_by_PTS_avg', 'red', false, 'Height weighed by points', 'pts'),
-      new NumericColumn('wed_h_by_AST_avg', 'orange', false, 'Height weighed by assistants', 'ast'),
-      new NumericColumn('wed_h_by_BLK_avg', 'blue', false, 'Height weighed by blocks', 'blk'),
+      new NumericColumn('height_avg', '#9E9E9E', true, 'Height', 'height'),
+      new NumericColumn('wed_h_by_orb_drb_sum_avg', '#6744B1', false, 'Height weighed by rebounds', 'odrm'),
+      new NumericColumn('wed_h_by_PTS_avg', '#FB582F', false, 'Height weighed by points', 'pts'),
+      new NumericColumn('wed_h_by_AST_avg', '#FC9727', false, 'Height weighed by assistants', 'ast'),
+      new NumericColumn('wed_h_by_BLK_avg', '#2178CF', false, 'Height weighed by blocks', 'blk'),
     ]
 
     this.activeNumericColumns = this.numericColumns.filter((c) => c.name === 'height_avg');

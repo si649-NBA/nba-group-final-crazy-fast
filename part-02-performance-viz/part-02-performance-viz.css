@@ -84,30 +84,30 @@ header{
 
 
 .height-color--text {
-    color: gray;
+    color: #9E9E9E;
 }
 .pts-color--text {
-    color: red;
+    color: #FB582F;
 }
 .ast-color--text {
-    color: orange;
+    color: #FC9727;
 }
 .blk-color--text {
-    color: blue;
+    color: #2178CF;
 }
 .odrm-color--text {
-    color: purple;
+    color: #6744B1;
 }
 
 .pts-color--bg {
-    background-color: red;
+    background-color: #FB582F;
 }
 .ast-color--bg {
-    background-color: orange;
+    background-color: #FC9727;
 }
 .blk-color--bg {
-    background-color: blue;
+    background-color: #2178CF;
 }
 .odrm-color--bg {
-    background-color: purple;
+    background-color: #6744B1;
 }
