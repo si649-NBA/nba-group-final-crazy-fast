@@ -92,13 +92,17 @@ h2 {
 	width:50%;
 }
 
+.part1_slider{
+	margin-top:12px;
+}
+
 h5{
 	color:#F8C331;
 }
 
 #play{
-	margin-left:60%;
-	width:120px;
+	margin-left:45%;
+	width:100px;
     font-size: 14px;
     font-weight: bold;
     padding: 15px;
