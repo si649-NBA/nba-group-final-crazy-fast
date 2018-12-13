@@ -54,4 +54,5 @@ header{
 .part-2--legend-rect {
     width: 30px;
     height: 30px;
+    border-radius: 5px;
 }
