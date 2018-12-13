@@ -46,8 +46,9 @@ body {
   font-size: 1.2rem;
 }
 h2 {
-  text-decoration: underline;
-  text-decoration-color: #F9D04D;
+  font-size: 40px;
+  /* text-decoration: underline;
+  text-decoration-color: #F9D04D; */
 }
 .main_content {
   margin: 2rem 3% 2rem 3%;
@@ -86,8 +87,9 @@ h2 {
 }
 .introbox h2 {
   margin-left: 15%;
-  text-decoration: underline;
-  text-decoration-color: #F9D04D;
+  font-size: 40px;
+  /* text-decoration: underline;
+  text-decoration-color: #F9D04D; */
 }
 .introbox p {
   font-size: 1.1em;
