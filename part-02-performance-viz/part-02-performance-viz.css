@@ -28,7 +28,7 @@ overwrite others' styling, and your styling won't be overwritten by others.
 	flex-wrap:nowrap;
 	justify-content: space-between;
 	height:50px;
-	top:50%;
+	margin-top:10rem;
 }
 
 .part2_chart{
@@ -43,16 +43,24 @@ header{
 }
 
 .part-02-my-svg{
-	width: 60%; 
-	margin-right: 5%;
+	width: 60%
+	margin-right:5%;
+}
+
+.part-2--checkbox-field{
+	margin:0.5rem 0;
 }
 
 .part-2--checkbox-field label{
-	display: flex;
+	display:inline;
 }
 
 .part-2--legend-rect {
     width: 30px;
     height: 30px;
     border-radius: 5px;
+}
+
+.part-2--checkbox-field input[type=checkbox] {
+  transform: scale(1.5);
 }
