@@ -153,6 +153,9 @@ function changeimg() {
         })
       }
       else {
+          if ($(".avatar--error-msg").css("display") !== "none") {
+            $(".avatar--error-msg").hide()
+          }
         $(".avatar--error-msg").fadeIn(500, () => {
             PART_03_TRANSITING = false
         })
