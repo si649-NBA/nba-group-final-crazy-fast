@@ -65,6 +65,7 @@ h2 {
 .part1_text{
 	height:500px;
 	margin-left:5%;
+  margin-top:5%;
 	width:40%;
 	overflow-y:auto;
 }
