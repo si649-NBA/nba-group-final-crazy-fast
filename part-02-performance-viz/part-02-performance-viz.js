@@ -39,7 +39,8 @@ function part02EntryPoint() {
     fields: weighedHeightViz.numericColumns.map((c) => {
       return {
         identifierText: c.name,
-        checked: c.isStatic
+        checked: c.isStatic,
+        lineColor: c.lineColor
       }
     })
   })
@@ -62,10 +63,11 @@ class NumericColumn {
 
 class WeighedDataCheckbox {
   constructor(props) {
-    let {identifierText="", labelText="", checked=false, } = props;
+    let {identifierText="", labelText="", checked=false, lineColor="" } = props;
 
     this.identifierText = identifierText;
     this.labelText = labelText;
+    this.lineColor =  lineColor;
     this.checkbox = this.generatejQueryObject();
     this.onChangeCallBack = null;
 
@@ -91,8 +93,12 @@ class WeighedDataCheckbox {
 
     let legendRect = $("<div>", {
       class: `part-2--legend-rect`
-    })
+    }).css("background-color", this.lineColor)
     label.append(legendRect)
+
+    let lengendText = $("<span>", {})
+        .text(this.labelText)
+    label.append(lengendText)
 
     checkboxField
       .append(checkbox)
@@ -134,7 +140,8 @@ class DataCheckboxFilter {
       let checkboxField = new WeighedDataCheckbox({
         identifierText: f.identifierText,
         labelText: f.identifierText.replace(/_/g, ' '),
-        checked: f.checked
+        checked: f.checked,
+        lineColor: f.lineColor,
       })
 
       checkboxField.onChangeCallBack = (event) => {
