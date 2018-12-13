@@ -4,7 +4,7 @@
     <!-- Happy coding! Feel free to replace any code in this <div> -->
     <p>PART 1</p>
     <h2>
-    How NBA players’ size changes <br> over time?
+    NBA player's size changes over time.
     </h2>
 	<div class="part1_content">
 		<div class="part1_outputs">
@@ -17,17 +17,27 @@
 			</p>
 			<svg class="part-01-my-svg">
 			</svg>
-			<div>
-			  <input id="slider" type="range" min="1950" max="2018" value="1950" step="1" />
-			  <span id="range">1950</span>
-			  <button class="part1_bt" name="play" id="play">Play</button>
+			<div class="part1_selection">
+				<div class="part1_slider">
+					<input id="slider" type="range" min="1950" max="2018" value="1950" step="1" />
+	  			  <span id="range">1950</span>
+				</div>
+				<div class="part1_btn">
+ 					<button class="part1_bt" name="play" id="play">Play</button>
+				</div>
 			</div>
 		</div>
 		<div class="part1_text">
 			<p>In order to learn how NBA players’ average size changes in the past seventy years, we visualize both players’ height and weight in scatter plot to demonstrate the trend. And the size changes over time can be devided into three stages as follow:</p>
-			<p>Stage 1: From 1950 to 1980, coaches realized the advantage of height for a typical basketball player, which led players’ average height grew rapidly.</p>
-			<p>Stage 2: From 1980 to 2011, the average height stagnated while weight kept increasing, players are becoming stronger to compete in the league.</p>
-			<p>Stage 3: From 2011 to 2017, players’ started to decline. we assume it is because of the prevalent of “small ball tactics” during that time, which requires players to become agile to fit all-round plays.</p>
+			<p>Stage 1:
+			<>From 1950 to 1980, coaches realized the advantage of height for a typical basketball player, which led players’ average height grew rapidly.</p>
+			<p class="part1_stage2_name">Stage 2: </p>
+			<img class="part1_stage2_img" src="img/stage2.png">
+			<p>From 1980 to 2011, the average height stagnated while weight kept increasing, players are becoming stronger to compete in the league.</p>
+			<p class="part1_stage3_name">Stage 3: </p>
+			<img class="part1_stage3_img" src="img/stage3.png">
+			<p>From 2011 to 2017, players’ started to decline. we assume it is because of the prevalent of “small ball tactics” during that time, which requires players to become agile to fit all-round plays.</p>
+
 		</div>
 	</div>
 

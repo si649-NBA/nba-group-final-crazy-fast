@@ -76,6 +76,18 @@ h2 {
 	width:40%;
 	overflow-y:auto;
 }
+
+.part1_selection{
+	display:flex;
+	flex-direction:row;
+	justify-content: space-between;
+	flex-wrap:nowrap;
+}
+
+.part1_slider, .part1_btn {
+	width:50%;
+}
+
 h5{
 	color:#F8C331;
 }
