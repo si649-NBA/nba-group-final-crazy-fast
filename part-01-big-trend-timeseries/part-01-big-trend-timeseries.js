@@ -35,7 +35,7 @@ async function part01EntryPoint() {
   //find data in year 1950
   function findDataItem(data) {
     //console.log("filtering")
-    var part1_year = 2016;
+    var part1_year = 1992;
     var year = data.filter(function(d) {
       return d.year == part1_year;
     })
@@ -44,8 +44,6 @@ async function part01EntryPoint() {
 
   //draw scatter plot
   function drawScatterPlot(data) {
-    var part1_colorScale = d3.scaleOrdinal(d3.schemeCategory20b); //color
-    //console.log("drawing")
     svg.selectAll("circle")
       .data(data)
       .enter()
@@ -59,9 +57,21 @@ async function part01EntryPoint() {
       })
       .attr("r", 3)
       .style("fill", function(d) {
-        return part1_colorScale(function(d) {
-          return d.position;
-        });
+        if (d.position == "PG") {
+          return "#6CB970";
+        }
+        if (d.postion == "SG") {
+          return "#87D8FB";
+        }
+        if (d.position == "SF") {
+          return "#8EA2F9";
+        }
+        if (d.position == "PF") {
+          return "#E688F6"
+        }
+        if (d.position == "C") {
+          return "#FB8C86"
+        }
       })
   //.style("fill", "white");
   }
@@ -70,10 +80,10 @@ async function part01EntryPoint() {
   function setScale() {
     var padding = 30;
     part1_xScale = d3.scaleLinear()
-      .domain([60, 150])
+      .domain([50, 150])
       .range([padding, 600 - padding * 2]);
     part1_yScale = d3.scaleLinear()
-      .domain([1.6, 2.3])
+      .domain([1.5, 2.3])
       .range([450 - padding, padding]);
   }
 
