@@ -265,7 +265,7 @@ function drawradar2(j) {
     }
   };
   var dataLiteracy = {
-    labels: ["Close", "Medium", "3PT", "Free Throw", "layup", "Dunk"],
+    labels: ["Close", "Medium", "3PT", "Free Throw", "Layup", "Dunk"],
     datasets: [{
       label: 'SHOOTING',
       data: data[j],
