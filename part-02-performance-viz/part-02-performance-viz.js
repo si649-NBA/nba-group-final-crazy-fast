@@ -36,26 +36,44 @@ function part02EntryPoint() {
 
     let dataCheckboxFilter = new DataCheckboxFilter({
         selector: '.part-2--weighed-filter',
-        fields: weighedHeightViz.numericColumns.map((c) => c.name)
+        fields: weighedHeightViz.numericColumns.map((c) => {
+            return {
+                identifierText: c.name,
+                checked: c.isStatic
+            }
+        })
     })
+
+    dataCheckboxFilter.onChangeCallBack = (event) => {
+        let { checkedBoxesIdentifierText } = event;
+        weighedHeightViz.update(checkedBoxesIdentifierText)
+    }
     
 }
 
 class NumericColumn {
-    constructor(name="", lineColor="") {
+    constructor(name="", lineColor="", isStatic=false) {
         this.name = name 
         this.className = `part-2--${this.name}--line`
         this.lineColor = lineColor
+        this.isStatic = isStatic
     }
 }
 
 class WeighedDataCheckbox {
     constructor(props) {
-        let { identifierText="", labelText="" } = props;
+        let {
+            identifierText="", 
+            labelText="",
+            checked=false,
+        } = props;
+
         this.identifierText = identifierText;
         this.labelText = labelText;
-
-        this.checkbox = this.generatejQueryObject()
+        this.checkbox = this.generatejQueryObject();
+        this.onChangeCallBack = null;
+        
+        this.checked = checked
     }
 
     generatejQueryObject() {
@@ -65,7 +83,10 @@ class WeighedDataCheckbox {
         let checkbox = $("<input>", {
             type: `checkbox`,
             id: `part-2--${this.identifierText}-checkbox`
+        }).on('change', ($event) => {
+            this.onCheckboxChange($event)
         })
+
         let label = $("<label>", {
             for: checkbox.attr('id'),
             class: `${checkbox.attr('id')}--label`
@@ -77,31 +98,72 @@ class WeighedDataCheckbox {
         
         return checkboxField
     }
+
+    onCheckboxChange($event) {
+        let targetCheckbox = $($event.target);
+        this.checked = targetCheckbox.prop('checked')
+        if (this.onChangeCallBack !== null) {
+            this.onChangeCallBack({
+                checked: this.checked,
+                identifierText: this.identifierText
+            });
+        }
+    }
 }
 
 class DataCheckboxFilter {
     constructor(props) {
-        let { selector, fields } = props;
+        let {
+            selector, 
+            fields,
+        } = props;
         this.selector = selector;
         this.jQueryObject = $(selector);
-        this.fields = fields;
+        this.fields = fields.filter((f) => f.identifierText !== 'height_avg');
+
         this.checkboxFields = [];
 
         this.generateCheckboxes()
-        for (let ch of this.checkboxFields) {
+        
+        for (let ch of this.checkboxFields.map((cbx) => cbx.dom)) {
             this.jQueryObject.append(ch.checkbox)
         }
     }
 
     generateCheckboxes() {
         for (let f of this.fields) {
-            let labelText = f.replace(/_/g, ' ')
             let checkboxField = new WeighedDataCheckbox({
-                identifierText: f,
-                labelText
+                identifierText: f.identifierText,
+                labelText: f.identifierText.replace(/_/g, ' '),
+                checked: f.checked
             })
-            this.checkboxFields.push(checkboxField)
+
+            checkboxField.onChangeCallBack = (event) => {
+                let targetCheckboxField = this.checkboxFields.find((c) => c.identifierText === event.identifierText)
+                targetCheckboxField.checked = event.checked;
+
+                let checkedCheckboxFields = this.checkboxFields
+                    .filter((cbx) => cbx.checked === true)
+                    .map((cbx) => cbx.identifierText)
+
+                this.onChangeCallBack({
+                    changed: event,
+                    checkedBoxesIdentifierText: checkedCheckboxFields
+                })
+            }
+
+            this.checkboxFields.push({
+                dom: checkboxField,
+                checked: checkboxField.checked,
+                identifierText: checkboxField.identifierText
+            })
         }
+
+        
+    }
+
+    setOnChangeCallback(callback) {
+        this.onChangeCallBack = callback;
     }
 }
 
@@ -111,18 +173,21 @@ class WeighedHeightViz {
         this.props = props;
 
         this.numericColumns = [
-            new NumericColumn('height_avg', 'gray'),
+            new NumericColumn('height_avg', 'gray', true),
             new NumericColumn('wed_h_by_orb_drb_sum_avg', 'purple'),
             new NumericColumn('wed_h_by_PTS_avg', 'red'),
             new NumericColumn('wed_h_by_AST_avg', 'orange'),
             new NumericColumn('wed_h_by_BLK_avg', 'blue'),
         ]
 
+        this.activeNumericColumns = this.numericColumns.filter((c) => c.name === 'height_avg' );
+
         this.loadData().then(() => {
             this.initVizSpace();
             this.initScale()
             this.initAxis()
             this.initAxisLabels()
+
             this.render()
         })
     }
@@ -202,21 +267,29 @@ class WeighedHeightViz {
         })
     }
 
-    drawLines() {
+    drawLines(columns) {
         // transition
-        this.svg.select(`.part-2--line`).remove();
+        this.svg.selectAll(`.part-2--line:not(.part-2--fixed-line)`).remove();
 
-        for (let col of this.numericColumns) {
+        for (let col of columns) {
             this.drawHeightLine({
                 columnName: col.name,
                 className: col.className,
-                lineColor: col.lineColor
+                lineColor: col.lineColor,
+                isStatic: col.isStatic
             })
         }
     }
 
     drawHeightLine(spec) {
-        let { columnName, className, lineColor = "" } = spec;
+        let { columnName, className, lineColor = "", isStatic = false } = spec;
+
+        if (isStatic) {
+            if ($(`.${className}`).length > 0) {
+                return
+            }
+        }
+
         // not drawing the line! Calculating the data only.
         let line = d3.line()
             .curve(d3.curveBasis)
@@ -230,7 +303,7 @@ class WeighedHeightViz {
 
         let path = this.svg.append("path")
             .datum(this.data) // data() VS datum(): https://stackoverflow.com/questions/13728402/what-is-the-difference-d3-datum-vs-data
-            .attr("class", `${className} part-2--line`)
+            .attr("class", `${className} part-2--line ${(isStatic) ? "part-2--fixed-line" : ""}`)
             .attr("d", line)
             .styles({
                 stroke: lineColor
@@ -245,14 +318,21 @@ class WeighedHeightViz {
                 "stroke-dashoffset": totalLength,
             })
         .transition()
-            .duration(4000)
+            .duration(1000)
             .ease(d3.easeLinear)
             .attr("stroke-dashoffset", 0)
             ;
     }
 
+    update(columns=[]) {
+        this.activeNumericColumns = columns.map((col) => {
+            return this.numericColumns.find((c) => c.name === col)
+        })
+        this.render()
+    }
+
     render() {
-        this.drawLines()
+        this.drawLines(this.activeNumericColumns)
     }
 }
 
