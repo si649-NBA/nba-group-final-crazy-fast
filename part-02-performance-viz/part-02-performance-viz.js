@@ -90,7 +90,13 @@ class WeighedDataCheckbox {
         let label = $("<label>", {
             for: checkbox.attr('id'),
             class: `${checkbox.attr('id')}--label`
-        }).text(this.labelText)
+        })
+            // .text(this.labelText)
+
+        let legendRect = $("<div>", {
+            class: `part-2--legend-rect`
+        })
+        label.append(legendRect)
         
         checkboxField
             .append(checkbox)
