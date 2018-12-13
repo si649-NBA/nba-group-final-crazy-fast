@@ -172,3 +172,7 @@ label {
 .player-image {
     object-fit: cover;
 }
+
+.part3-outputs {
+	background-color: white;
+}
