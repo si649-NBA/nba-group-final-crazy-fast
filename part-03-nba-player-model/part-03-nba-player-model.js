@@ -40,7 +40,7 @@ PART_03_TRANSITING = false;
 
 function changeimg() {
 
-    if (PART_03_TRANSITING) return
+  if (PART_03_TRANSITING) return
 
   for (let canvasDOM of $("canvas")) {
     let context = canvasDOM.getContext('2d')
@@ -142,39 +142,38 @@ function changeimg() {
     drawradar2(13);
     console.log(img);
   } else {
-      PART_03_TRANSITING = true
-      if ($(".part3-outputs").css("display") !== "none") {
-        $(".part3-outputs")
+    PART_03_TRANSITING = true
+    if ($(".part3-outputs").css("display") !== "none") {
+      $(".part3-outputs")
         .css("display", "flex")
         .fadeOut(400, () => {
-            $(".avatar--error-msg").fadeIn(500, () => {
-                PART_03_TRANSITING = false
-            })
-        })
-      }
-      else {
-          if ($(".avatar--error-msg").css("display") !== "none") {
-            $(".avatar--error-msg").hide()
-          }
-        $(".avatar--error-msg").fadeIn(500, () => {
+          $(".avatar--error-msg").fadeIn(500, () => {
             PART_03_TRANSITING = false
+          })
         })
+    } else {
+      if ($(".avatar--error-msg").css("display") !== "none") {
+        $(".avatar--error-msg").hide()
       }
-    
+      $(".avatar--error-msg").fadeIn(500, () => {
+        PART_03_TRANSITING = false
+      })
+    }
+
     console.log("no such player")
   }
 }
 
 function drawradar(i) {
-    $(".avatar--error-msg").hide()
+  $(".avatar--error-msg").hide()
 
-    PART_03_TRANSITING = true
-    $(".part3-outputs")
-        .css("display", "flex")
-        .hide()
-        .fadeIn(800, () => {
-            PART_03_TRANSITING = false
-        })
+  PART_03_TRANSITING = true
+  $(".part3-outputs")
+    .css("display", "flex")
+    .hide()
+    .fadeIn(800, () => {
+      PART_03_TRANSITING = false
+    })
 
   i = i - 1;
 
@@ -211,7 +210,7 @@ function drawradar(i) {
   var dataLiteracy = {
     labels: ["Offense", "Defence", "Rebounding", "Potential"],
     datasets: [{
-      label: 'Player attack type',
+      label: 'OVERALL',
       data: data[i],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)'
@@ -230,7 +229,7 @@ function drawradar(i) {
     options: options
   });
 
-//   console.log(myRadarChart);
+  //   console.log(myRadarChart);
 
 }
 
@@ -266,9 +265,9 @@ function drawradar2(j) {
     }
   };
   var dataLiteracy = {
-    labels: ["Close", "Medium", "3PT", "Free Throw", "layup", "Dunk"],
+    labels: ["Close", "Medium", "3PT", "Free Throw", "Layup", "Dunk"],
     datasets: [{
-      label: 'Player shoot type',
+      label: 'SHOOTING',
       data: data[j],
       backgroundColor: [
         'rgba(54, 162, 235, 0.2)'
@@ -287,7 +286,7 @@ function drawradar2(j) {
     options: options
   });
 
-//   console.log(myRadarChart);
+  //   console.log(myRadarChart);
 
 }
 
